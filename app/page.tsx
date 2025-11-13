@@ -4,9 +4,12 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import MainContent from "@/components/layout/MainContent";
 import { Button } from "@/components/ui/Button";
+import TabsContainer from "@/components/ui/Tabs";
+import * as Tabs from "@radix-ui/react-tabs";
 import { useState } from "react";
 
 export default function HomePage() {
+  const [selectedTab, setSelectedTab] = useState("style");
   const [styleContext, setStyleContext] = useState({
     theme: "modern",
     palette: "forest",
@@ -22,7 +25,6 @@ export default function HomePage() {
       {/* 🪶 Main Content */}
       <MainContent>
         <div className="max-w-3xl w-full bg-[#fffaf3] border border-[#e3d6c1] shadow-md rounded-2xl p-6">
-          
           <h2 className="text-xl font-semibold text-[#3f3a2f] mb-1">
             🪶 Start a Design Session
           </h2>
@@ -31,21 +33,31 @@ export default function HomePage() {
           </p>
 
           {/* Tabs */}
-          <div className="flex border-b border-[#e3d6c1] mb-4">
-            <Button
-              className="px-4 py-2 text-sm font-medium text-[#3f3a2f] border-b-2 border-[#7a5f3e]"
-              disabled={false}
-            >
-              Style Settings
-            </Button>
+          <TabsContainer value={selectedTab} onValueChange={setSelectedTab}>
+            <Tabs.List className="flex border-b border-[#e3d6c1]">
+              <Tabs.Trigger
+                value="style"
+                className={`px-4 py-2 text-sm font-medium ${
+                  selectedTab === "style"
+                    ? "border-b-2 border-[#7a5f3e] text-[#3f3a2f]"
+                    : "text-[#6e6556] hover:text-[#3f3a2f]"
+                }`}
+              >
+                Style Settings
+              </Tabs.Trigger>
 
-            <Button
-              className="px-4 py-2 text-sm font-medium text-[#6e6556] hover:text-[#3f3a2f] transition-colors"
-              disabled={false}
-            >
-              Preview
-            </Button>
-          </div>
+              <Tabs.Trigger
+                value="preview"
+                className={`px-4 py-2 text-sm font-medium ${
+                  selectedTab === "preview"
+                    ? "border-b-2 border-[#7a5f3e] text-[#3f3a2f]"
+                    : "text-[#6e6556] hover:text-[#3f3a2f]"
+                }`}
+              >
+                Preview
+              </Tabs.Trigger>
+            </Tabs.List>
+          </TabsContainer>
 
           {/* Style Settings */}
           <div className="space-y-4">
