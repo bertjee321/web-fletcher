@@ -140,7 +140,7 @@ It has that **OSRS nostalgia** *and* modern dev-tool energy.
 
 ## 💬 Fun “Lore” (to play with the theme)
 
-You could even make the UI slightly gamified —
+Possibly make the UI slightly gamified —
 e.g.:
 
 * “Fletch your first layout 🏹”
@@ -151,5 +151,3 @@ Makes it stand out and feel fun, especially for devs who get the reference.
 
 ---
 
-Would you like me to help you **draft a short README.md** for your new repo (like an open-source landing page for *Web-Fletcher*)?
-I can make it in a RuneScape-flavored but still professional tone.
