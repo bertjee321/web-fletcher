@@ -1,8 +1,8 @@
 export enum BorderRadius {
-  None = "none",
-  Small = "sm",
-  Medium = "md",
-  Large = "lg",
-  ExtraLarge = "xl",
-  Full = "full",
+  None = "None",
+  Small = "Small",
+  Medium = "Medium",
+  Large = "Large",
+  ExtraLarge = "Extra Large",
+  Full = "Full",
 }

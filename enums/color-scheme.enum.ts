@@ -1,7 +1,7 @@
 export enum ColorScheme {
-  Light = "light",
-  Dark = "dark",
-  Auto = "auto",
-  HighContrast = "high contrast",
-  Pastel = "pastel",
+  Light = "Light",
+  Dark = "Dark",
+  Auto = "Auto",
+  HighContrast = "High Contrast",
+  Pastel = "Pastel",
 }

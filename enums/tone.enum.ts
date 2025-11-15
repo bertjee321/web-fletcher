@@ -1,8 +1,8 @@
 export enum Tone {
-  ModernMinimalist = "modern, minimalist",
-  FunPlayful = "fun, playful",
-  ProfessionalCorporate = "professional, corporate",
-  LuxuryPremium = "luxury, premium",
-  RetroPixel = "retro, pixel",
-  Brutalist = "brutalist",
+  ModernMinimalist = "Modern, Minimalist",
+  FunPlayful = "Fun, Playful",
+  ProfessionalCorporate = "Professional, Corporate",
+  LuxuryPremium = "Luxury, Premium",
+  RetroPixel = "Retro, Pixel",
+  Brutalist = "Brutalist",
 }
