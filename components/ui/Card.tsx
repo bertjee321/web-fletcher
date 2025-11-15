@@ -7,7 +7,7 @@ const Card = ({
 }) => {
   const defaultStyle = "border-[#e3d6c1] bg-[#fffaf3] shadow-md rounded-2xl";
 
-  return <div className={className ?? defaultStyle}>{children}</div>;
+  return <div className={`${defaultStyle} ${className ?? ""}`}>{children}</div>;
 };
 
 const CardHeader = ({
@@ -36,7 +36,7 @@ const CardBody = ({
 }) => {
   const defaultStyle = "space-y-4";
 
-  return <div className={className ?? defaultStyle}>{children}</div>;
+  return <div className={`${defaultStyle} ${className ?? ""}`}>{children}</div>;
 };
 
 export { Card, CardBody, CardHeader };
