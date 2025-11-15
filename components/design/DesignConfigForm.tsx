@@ -1,0 +1,76 @@
+"use client";
+
+import {
+  BorderRadiusInput,
+  ColorSchemeInput,
+  FontInput,
+  PrimaryColorInput,
+  SpacingInput,
+  ToneInput,
+} from "@/components/design/style-inputs";
+import { StyleContext } from "@/models/style-context.model";
+import { Button } from "../ui/Button";
+import GeneratedOutput from "./output/GeneratedOutput";
+
+interface DesignConfigFormProps {
+  styleContext: StyleContext;
+  setStyleContext: (value: StyleContext) => void;
+}
+
+const DesignConfigForm = ({
+  styleContext,
+  setStyleContext,
+}: DesignConfigFormProps) => {
+  return (
+    <>
+      <ColorSchemeInput
+        value={styleContext.colorScheme}
+        setValue={(value) =>
+          setStyleContext({ ...styleContext, colorScheme: value })
+        }
+      />
+
+      <PrimaryColorInput
+        value={styleContext.primaryColor}
+        setValue={(value) =>
+          setStyleContext({ ...styleContext, primaryColor: value })
+        }
+      />
+
+      <BorderRadiusInput
+        value={styleContext.borderRadius}
+        setValue={(value) =>
+          setStyleContext({ ...styleContext, borderRadius: value })
+        }
+      />
+
+      <ToneInput
+        value={styleContext.tone}
+        setValue={(value) => setStyleContext({ ...styleContext, tone: value })}
+      />
+
+      <FontInput
+        value={styleContext.font}
+        setValue={(value) => setStyleContext({ ...styleContext, font: value })}
+      />
+
+      <SpacingInput
+        value={styleContext.spacing}
+        setValue={(value) =>
+          setStyleContext({ ...styleContext, spacing: value })
+        }
+      />
+
+      <Button
+        className="mt-4 w-full bg-[#7a5f3e] hover:bg-[#8b7355] text-white font-medium py-2 rounded-lg transition-colors"
+        onClick={() => console.log(styleContext)}
+      >
+        🏹 Fletch Layout
+      </Button>
+
+      <GeneratedOutput />
+    </>
+  );
+};
+
+export default DesignConfigForm;
