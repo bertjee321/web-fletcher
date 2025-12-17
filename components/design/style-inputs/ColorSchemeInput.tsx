@@ -1,7 +1,7 @@
 "use client";
 
 import Tooltip from "@/components/ui/Tooltip";
-import { ColorScheme } from "@/enums";
+import { ColorScheme } from "@/lib/enums";
 
 interface ColorSchemeInputProps {
   value: ColorScheme;

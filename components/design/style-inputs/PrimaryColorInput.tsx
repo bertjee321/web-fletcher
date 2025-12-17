@@ -1,7 +1,7 @@
 "use client";
 
 import Tooltip from "@/components/ui/Tooltip";
-import { PrimaryColor } from "@/enums";
+import { PrimaryColor } from "@/lib/enums";
 
 interface PrimaryColorInputProps {
   value: PrimaryColor;

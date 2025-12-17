@@ -1,7 +1,7 @@
 'use client';
 
 import Tooltip from "@/components/ui/Tooltip";
-import { Font } from "@/enums";
+import { Font } from "@/lib/enums";
 import { useState, useRef, useEffect } from "react";
 
 interface FontInputProps {

@@ -8,7 +8,7 @@ import {
   SpacingInput,
   ToneInput,
 } from "@/components/design/style-inputs";
-import { StyleContext } from "@/models/style-context.model";
+import { StyleContext } from "@/lib/models/style-context.model";
 import { Button } from "../ui/Button";
 import GeneratedOutput from "./output/GeneratedOutput";
 

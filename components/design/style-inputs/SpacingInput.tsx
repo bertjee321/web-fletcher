@@ -1,7 +1,7 @@
 "use client";
 
 import Tooltip from "@/components/ui/Tooltip";
-import { Spacing } from "@/enums";
+import { Spacing } from "@/lib/enums";
 import { useEffect, useRef, useState } from "react";
 
 interface SpacingInputProps {

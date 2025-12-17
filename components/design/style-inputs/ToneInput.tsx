@@ -1,6 +1,6 @@
 "use client";
 
-import { Tone } from "@/enums";
+import { Tone } from "@/lib/enums";
 
 interface ToneInputProps {
   value: Tone;

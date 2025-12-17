@@ -12,10 +12,10 @@ const Header = () => {
         <a href="#" className="hover:text-[#8b7355] transition-colors">
           Home
         </a>
-        <a href="#" className="hover:text-[#8b7355] transition-colors">
+        <a href="/sessions" className="hover:text-[#8b7355] transition-colors">
           Sessions
         </a>
-        <a href="#" className="hover:text-[#8b7355] transition-colors">
+        <a href="/docs" className="hover:text-[#8b7355] transition-colors">
           Docs
         </a>
       </nav>

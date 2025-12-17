@@ -1,7 +1,7 @@
 "use client";
 
 import Tooltip from "@/components/ui/Tooltip";
-import { BorderRadius } from "@/enums";
+import { BorderRadius } from "@/lib/enums";
 
 interface BorderRadiusInputProps {
   value: BorderRadius;
