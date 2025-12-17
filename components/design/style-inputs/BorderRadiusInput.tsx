@@ -17,27 +17,27 @@ const BorderRadiusInput = ({ value, setValue }: BorderRadiusInputProps) => {
           content={
             <ul className="text-sm text-gray-700 space-y-1">
               <li>
-                <strong>none</strong> - Sharp, square corners with no rounding
+                <strong>None</strong> - Sharp, square corners with no rounding
                 (0px radius)
               </li>
               <li>
-                <strong>sm</strong> - Subtle rounding for a slightly softer
+                <strong>Small</strong> - Subtle rounding for a slightly softer
                 appearance
               </li>
               <li>
-                <strong>md</strong> - Medium rounding that balances modern
+                <strong>Medium</strong> - Medium rounding that balances modern
                 aesthetics with readability
               </li>
               <li>
-                <strong>lg</strong> - Pronounced rounding for a more friendly,
+                <strong>Large</strong> - Pronounced rounding for a more friendly,
                 approachable feel
               </li>
               <li>
-                <strong>xl</strong> - Heavy rounding for a very modern,
+                <strong>Extra Large</strong> - Heavy rounding for a very modern,
                 pill-like appearance
               </li>
               <li>
-                <strong>full</strong> - Complete rounding creating perfect
+                <strong>Full</strong> - Complete rounding creating perfect
                 circles or pills
               </li>
             </ul>
