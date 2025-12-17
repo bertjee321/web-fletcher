@@ -13,8 +13,8 @@ import {
   PrimaryColor,
   Spacing,
   Tone,
-} from "@/enums";
-import { StyleContext } from "@/models/style-context.model";
+} from "@/lib/enums";
+import { StyleContext } from "@/lib/models/style-context.model";
 import { useState } from "react";
 
 export default function HomePage() {
