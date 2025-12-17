@@ -26,7 +26,12 @@ export default function HomePage() {
     tone: Tone.ModernMinimalist,
     font: Font.Inter,
     spacing: Spacing.Compact,
+    designBrief: "",
   });
+
+  const onSubmit = () => {
+    console.log(styleContext);
+  };
 
   return (
     <main className="min-h-screen flex flex-col bg-[#f8f5ef] text-[#2c2a24] font-sans">
@@ -52,14 +57,8 @@ export default function HomePage() {
             <DesignConfigForm
               styleContext={styleContext}
               setStyleContext={setStyleContext}
+              onSubmit={onSubmit}
             ></DesignConfigForm>
-
-            {/* <div className="mt-4 border border-dashed border-[#d3c9b4] rounded-xl p-6 text-center text-sm text-[#6e6556]">
-              <p>Generated layout preview will appear here.</p>
-              <p className="mt-2 italic">
-                “You’ve gained +10 UI Consistency XP.”
-              </p>
-            </div> */}
           </CardBody>
 
           {/* Dummy Preview */}

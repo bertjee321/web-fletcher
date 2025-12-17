@@ -16,11 +16,13 @@ import GeneratedOutput from "./output/GeneratedOutput";
 interface DesignConfigFormProps {
   styleContext: StyleContext;
   setStyleContext: (value: StyleContext) => void;
+  onSubmit: () => void;
 }
 
 const DesignConfigForm = ({
   styleContext,
   setStyleContext,
+  onSubmit,
 }: DesignConfigFormProps) => {
   return (
     <>
@@ -71,7 +73,7 @@ const DesignConfigForm = ({
 
       <Button
         className="mt-4 w-full bg-[#7a5f3e] hover:bg-[#8b7355] text-white font-medium py-2 rounded-lg transition-colors"
-        onClick={() => console.log(styleContext)}
+        onClick={onSubmit}
       >
         🏹 Fletch Layout
       </Button>
