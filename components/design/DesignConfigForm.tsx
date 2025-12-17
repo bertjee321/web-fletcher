@@ -3,6 +3,7 @@
 import {
   BorderRadiusInput,
   ColorSchemeInput,
+  DesignBriefInput,
   FontInput,
   PrimaryColorInput,
   SpacingInput,
@@ -58,6 +59,13 @@ const DesignConfigForm = ({
         value={styleContext.spacing}
         setValue={(value) =>
           setStyleContext({ ...styleContext, spacing: value })
+        }
+      />
+
+      <DesignBriefInput
+        value={styleContext.designBrief ?? ""}
+        setValue={(value) =>
+          setStyleContext({ ...styleContext, designBrief: value })
         }
       />
 
