@@ -14,4 +14,5 @@ export interface StyleContext {
   tone: Tone;
   font: Font;
   spacing: Spacing;
+  designBrief?: string;
 }
