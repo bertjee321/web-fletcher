@@ -75,7 +75,8 @@ const DesignConfigForm = ({
         className="mt-4 w-full bg-[#7a5f3e] hover:bg-[#8b7355] text-white font-medium py-2 rounded-lg transition-colors"
         onClick={onSubmit}
       >
-        🏹 Fletch Layout
+        🏹 Fletch Layout <br />
+        <span className="text-sm font-normal">Starts new session</span>
       </Button>
 
       <GeneratedOutput />
