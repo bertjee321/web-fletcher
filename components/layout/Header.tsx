@@ -9,7 +9,7 @@ const Header = () => {
       </p>
 
       <nav className="space-x-6 text-sm">
-        <a href="#" className="hover:text-[#8b7355] transition-colors">
+        <a href="/" className="hover:text-[#8b7355] transition-colors">
           Home
         </a>
         <a href="/sessions" className="hover:text-[#8b7355] transition-colors">
