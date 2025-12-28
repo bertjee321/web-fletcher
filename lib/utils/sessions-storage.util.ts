@@ -82,19 +82,6 @@ export class SessionsStorageUtil {
     this.saveSessions(store);
   }
 
-  // Set active session
-  static setActiveSession(sessionId: string): void {
-    const store = this.getSessions();
-    const sessionExists = store.sessions.some((s) => s.id === sessionId);
-
-    if (!sessionExists) {
-      throw new Error("Session not found");
-    }
-
-    store.activeSessionId = sessionId;
-    this.saveSessions(store);
-  }
-
   // Delete session
   static deleteSession(sessionId: string): void {
     const store = this.getSessions();
