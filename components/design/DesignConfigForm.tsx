@@ -72,13 +72,11 @@ const DesignConfigForm = ({
       />
 
       <Button
-        className="mt-4 w-full bg-[#7a5f3e] hover:bg-[#8b7355] text-white font-medium py-2 rounded-lg transition-colors"
+        className="w-full bg-[#7a5f3e] hover:bg-[#8b7355] text-white font-medium py-2 rounded-lg transition-colors"
         onClick={onSubmit}
       >
         🏹 Fletch Layout
       </Button>
-
-      <GeneratedOutput />
     </div>
   );
 };
