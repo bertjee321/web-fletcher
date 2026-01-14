@@ -1,42 +1,20 @@
 "use client";
 
+import GeneratedOutput from "@/components/design/output/GeneratedOutput";
+import LayoutPreview from "@/components/design/output/LayoutPreview";
 import Header from "@/components/layout/Header";
 import MainContent from "@/components/layout/MainContent";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
-import {
-  BorderRadius,
-  ColorScheme,
-  Font,
-  PrimaryColor,
-  Spacing,
-  Tone,
-} from "@/lib/enums";
-import { Session } from "@/lib/models/sessions.models";
-import GeneratedOutput from "@/components/design/output/GeneratedOutput";
+import { Tabs } from "@/components/ui/Tabs";
 import { useSessions } from "@/lib/hooks/useSessions";
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Mock session for demonstration
-const mockSession: Session = {
-  id: "1",
-  name: "E-commerce Homepage Redesign",
-  createdAt: "2024-01-15T10:30:00Z",
-  updatedAt: "2024-01-20T14:45:00Z",
-  styleContext: {
-    colorScheme: ColorScheme.Light,
-    primaryColor: PrimaryColor.Blue,
-    borderRadius: BorderRadius.Medium,
-    tone: Tone.ModernMinimalist,
-    font: Font.Inter,
-    spacing: Spacing.Normal,
-    designBrief:
-      "Landing page for an e-commerce platform focused on sustainable fashion. Include hero section, featured products, and newsletter signup.",
-  },
-  generatedOutput: null,
-};
+const TABS: string[] = ["Output", "Preview"] as const;
 
 export default function SessionDetailPage() {
+  const [selectedTab, setSelectedTab] = useState<typeof TABS[number]>(TABS[0]);
   const params = useParams();
   const sessionId = params.sessionId as string;
   const { activeSession, switchSession } = useSessions();
@@ -164,8 +142,18 @@ export default function SessionDetailPage() {
               byline="AI-generated layout based on your style context"
               className="mb-4"
             />
+            <Tabs
+              tabs={TABS}
+              selectedTab={selectedTab}
+              onValueChange={setSelectedTab}
+            />
             <CardBody>
-              <GeneratedOutput />
+              {selectedTab === "Output" && (
+              <GeneratedOutput htmlContent={session.generatedOutput} />
+              )}
+              {selectedTab === "Preview" && (
+                <LayoutPreview htmlContent={session.generatedOutput} />
+              )}
             </CardBody>
           </Card>
         </div>
