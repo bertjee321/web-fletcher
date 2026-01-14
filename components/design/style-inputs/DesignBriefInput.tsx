@@ -13,7 +13,7 @@ const DesignBriefInput = ({ value, setValue }: DesignBriefInputProps) => {
   return (
     <div>
       <div className="flex items-center gap-1 mb-1">
-        <label className="block text-sm font-medium">Design Brief</label>
+        <label className="block text-sm font-medium">Design Brief <span className="text-xs">(optional, but recommended)</span></label>
         <Tooltip
           content={
             <p className="text-sm text-gray-700">
