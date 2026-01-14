@@ -35,7 +35,6 @@ const DEFAULT_STYLE_CONTEXT: StyleContext = {
 };
 
 export default function HomePage() {
-  const [selectedTab, setSelectedTab] = useState("style");
   const [sessionNameModal, setSessionNameModal] = useState(false);
   const [sessionName, setSessionName] = useState("");
   const [styleContext, setStyleContext] = useState<StyleContext>(
@@ -72,11 +71,6 @@ export default function HomePage() {
           <CardHeader
             title="🪶 Start a Design Session"
             byline="Define your design tone and begin fletching your first layout."
-          />
-
-          <DesignTabs
-            selectedTab={selectedTab}
-            onValueChange={setSelectedTab}
           />
 
           <CardBody>

@@ -25,7 +25,7 @@ const DesignConfigForm = ({
   onSubmit,
 }: DesignConfigFormProps) => {
   return (
-    <>
+    <div className="space-y-4 mt-4">
       <ColorSchemeInput
         value={styleContext.colorScheme}
         setValue={(value) =>
@@ -79,7 +79,7 @@ const DesignConfigForm = ({
       </Button>
 
       <GeneratedOutput />
-    </>
+    </div>
   );
 };
 
