@@ -1,13 +1,15 @@
 const Card = ({
   children,
   className,
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }) => {
   const defaultStyle = "border-[#e3d6c1] bg-[#fffaf3] shadow-md rounded-2xl";
 
-  return <div className={`${defaultStyle} ${className ?? ""}`}>{children}</div>;
+  return <div className={`${defaultStyle} ${className ?? ""}`} onClick={onClick}>{children}</div>;
 };
 
 const CardHeader = ({
