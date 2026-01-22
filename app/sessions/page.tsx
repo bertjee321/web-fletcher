@@ -33,8 +33,9 @@ export default function SessionsPage() {
             <EmptySessionState />
           ) : (
             <div className="mt-4 space-y-4">
-              {sortedSessions.map((session) => (
+              {sortedSessions.map((session, index) => (
                 <SessionCard
+                  key={index}
                   session={session}
                   onClick={handleSessionClick}
                   formatDate={formatDate}
