@@ -1,15 +1,11 @@
 "use client";
 
 import DesignConfigForm from "@/components/design/DesignConfigForm";
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
-import MainContent from "@/components/layout/MainContent";
-import { Button } from "@/components/ui/Button";
+import { PageLayoutWrapper } from "@/components/layout/PageLayoutWrapper";
+import { SessionNameModalContent } from "@/components/sessions/SessionNameModalContent";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
-import { ModalContainer } from "@/components/ui/ModalContainer";
 import { NoticeBox } from "@/components/ui/NoticeBox";
-import { TextInput } from "@/components/ui/TextInput";
 import {
   BorderRadius,
   ColorScheme,
@@ -37,7 +33,7 @@ export default function NewSessionPage() {
   const [sessionNameModal, setSessionNameModal] = useState(false);
   const [sessionName, setSessionName] = useState("");
   const [styleContext, setStyleContext] = useState<StyleContext>(
-    DEFAULT_STYLE_CONTEXT
+    DEFAULT_STYLE_CONTEXT,
   );
 
   const { createSession, updateOutput } = useSessions();
@@ -63,9 +59,20 @@ export default function NewSessionPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#f8f5ef] text-[#2c2a24] font-sans">
-      <Header />
-      <MainContent>
+    <>
+      <PageLayoutWrapper
+        modal={{
+          isOpen: sessionNameModal,
+          onClose: () => setSessionNameModal(false),
+          title: "New Session",
+          byline: "Give your design session a name",
+          content: SessionNameModalContent({
+            sessionName,
+            setSessionName,
+            onSessionNameSubmit,
+          }),
+        }}
+      >
         <Card className="max-w-3xl w-full p-6">
           <CardHeader
             title="🪶 Start a Design Session"
@@ -92,28 +99,7 @@ export default function NewSessionPage() {
             )}
           </CardBody>
         </Card>
-      </MainContent>
-      <Footer />
-
-      {/* Session Name Modal */}
-      <ModalContainer
-        isOpen={sessionNameModal}
-        onClose={() => setSessionNameModal(false)}
-        title="New Session"
-        byline="Give your design session a name"
-      >
-        <TextInput
-          placeholder="E.g., 'My SaaS Landing Page Layout'"
-          value={sessionName}
-          setValue={(value) => setSessionName(value)}
-        />
-        <Button
-          className="mt-4 w-full bg-[#7a5f3e] hover:bg-[#8b7355] text-white font-medium py-2 rounded-lg transition-colors"
-          onClick={onSessionNameSubmit}
-        >
-          Submit
-        </Button>
-      </ModalContainer>
-    </main>
+      </PageLayoutWrapper>
+    </>
   );
 }
