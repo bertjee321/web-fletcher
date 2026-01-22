@@ -17,6 +17,7 @@ import {
 import { useGenerateLayout } from "@/lib/hooks/useGenerateLayout";
 import { useSessions } from "@/lib/hooks/useSessions";
 import { StyleContext } from "@/lib/models/style-context.model";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const DEFAULT_STYLE_CONTEXT: StyleContext = {
@@ -30,6 +31,7 @@ const DEFAULT_STYLE_CONTEXT: StyleContext = {
 };
 
 export default function NewSessionPage() {
+  const router = useRouter();
   const [sessionNameModal, setSessionNameModal] = useState(false);
   const [sessionName, setSessionName] = useState("");
   const [styleContext, setStyleContext] = useState<StyleContext>(
@@ -53,6 +55,7 @@ export default function NewSessionPage() {
 
     if (response) {
       updateOutput(newSession.id, response.output_text);
+      router.push(`/sessions/${newSession.id}`);
     } else {
       console.error("Layout generation failed.");
     }
