@@ -11,7 +11,7 @@ import {
 } from "@/components/design/style-inputs";
 import { StyleContext } from "@/lib/models/style-context.model";
 import { Button } from "../ui/Button";
-import GeneratedOutput from "./output/GeneratedOutput";
+import GeneratedOutput from "../output/GeneratedOutput";
 
 interface DesignConfigFormProps {
   styleContext: StyleContext;
