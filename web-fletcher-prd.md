@@ -1,5 +1,58 @@
 # Web Fletcher - Product Requirements Document
 
+## Table of Contents
+
+1. [Overview](#1-overview)
+2. [Core Problem & Solution](#2-core-problem--solution)
+3. [Brand Identity & Theme](#25-brand-identity--theme)
+4. [Product Goals](#3-product-goals)
+5. [Core Features](#4-core-features)
+   - [4.1 Design Style Configuration](#41-design-style-configuration--implemented)
+   - [4.2 Layout Generation Agent](#42-layout-generation-agent--implemented)
+   - [4.3 Component Generation Agent](#43-component-generation-agent--partially-implemented)
+   - [4.4 Session Management](#44-session-management--implemented)
+   - [4.5 Result Output](#45-result-output--implemented)
+6. [User Workflows](#5-user-workflows)
+7. [UI/UX Requirements](#6-uiux-requirements)
+   - [6.1 Page Structure](#61-page-structure--implemented)
+   - [6.2 Design System](#62-design-system-current-implementation-)
+   - [6.3 Accessibility](#63-accessibility--implemented)
+   - [6.4 Visual Personality](#64-visual-personality)
+8. [Technical Architecture](#7-technical-architecture)
+   - [7.1 Tech Stack](#71-tech-stack--implemented)
+   - [7.2 Project Structure](#72-project-structure--implemented)
+   - [7.3 API Endpoints](#73-api-endpoints)
+9. [Agent Specifications](#8-agent-specifications)
+   - [8.1 Layout Fletcher Agent](#81-layout-fletcher-agent--implemented)
+   - [8.2 Component Fletcher Agent](#82-component-fletcher-agent--prompt-exists-not-integrated)
+   - [8.3 Agent Collaboration](#83-agent-collaboration-future-enhancement)
+10. [Data Models](#9-data-models)
+    - [9.1 StyleContext](#91-stylecontext--implemented)
+    - [9.2 Session Model](#92-session-model--implemented-localstorage)
+11. [Current State & Gaps](#10-current-state--gaps)
+    - [10.1 Implemented Features](#101-implemented-features-)
+    - [10.2 Critical Gaps](#102-critical-gaps-)
+    - [10.3 Known Issues](#103-known-issues-)
+12. [Roadmap & Priorities](#11-roadmap--priorities)
+13. [Future Features (Detailed)](#12-future-features-detailed)
+    - [12.1 Visual Style Editor](#121-visual-style-editor)
+    - [12.2 Design Refinement Loop](#122-design-refinement-loop)
+    - [12.3 Database Persistence](#123-database-persistence)
+    - [12.4 Agent Collaboration](#124-agent-collaboration)
+    - [12.5 Export Options](#125-export-options)
+    - [12.6 Design Marketplace](#126-design-marketplace)
+    - [12.7 Gamification System](#127-gamification-system)
+    - [12.8 Additional Planned Features](#128-additional-planned-features)
+14. [Success Criteria](#13-success-criteria)
+15. [Design Principles](#14-design-principles)
+16. [Technical Debt & Maintenance](#15-technical-debt--maintenance)
+17. [User Stories](#16-user-stories)
+18. [Open Questions & Decisions](#17-open-questions--decisions)
+19. [Glossary](#18-glossary)
+20. [Migration Notes](#19-migration-notes)
+
+---
+
 ## 1. Overview
 
 **Product Name:** Web Fletcher
