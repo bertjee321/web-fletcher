@@ -538,9 +538,9 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 10. Current State & Gaps
+## 7. Current State & Gaps
 
-### 10.1 Implemented Features ✅
+### 7.1 Implemented Features ✅
 1. **Design Configuration System** - Complete form with all inputs
 2. **Layout Generation Agent** - Working HTML/CSS generation
 3. **Session Management** - localStorage-based persistence
@@ -549,7 +549,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 6. **Page Structure** - Landing, sessions, session detail, 404
 7. **Accessibility** - WCAG AA compliance
 
-### 10.2 Critical MVP Gaps 🚧
+### 7.2 Critical MVP Gaps 🚧
 1. **User Authentication** - No email magic link system
 2. **Database Persistence** - Still using localStorage only
 3. **Credit System** - No wallet or payment processing
@@ -658,7 +658,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - Explore design variations quickly
 - Export custom themes for projects
 
-### 12.2 Design Refinement Loop
+### 9.2 Design Refinement Loop
 **Status:** Planned for Phase 2
 
 **Features:**
@@ -675,7 +675,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - Learn what works through comparison
 - Refine toward ideal design iteratively
 
-### 12.3 Database Persistence
+### 9.3 Database Persistence
 **Status:** Planned for Phase 2
 
 **Technology:** Prisma + SQLite (or PostgreSQL)
@@ -696,7 +696,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 4. Migrate localStorage data on login
 5. Add sync conflict resolution
 
-### 12.4 Agent Collaboration
+### 9.4 Agent Collaboration
 **Status:** Planned for Phase 3
 
 **Architecture:**
@@ -714,7 +714,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 5. Component automatically matches layout's visual style
 6. Component suggests layout improvements if needed
 
-### 12.5 Export Options
+### 9.5 Export Options
 **Status:** Planned for Phase 3
 
 **Formats:**
@@ -729,7 +729,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - Figma plugin integration (future)
 - GitHub Gist automatic upload
 
-### 12.6 Design Marketplace
+### 9.6 Design Marketplace
 **Status:** Planned for Phase 4
 
 **Features:**
@@ -742,7 +742,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - Monetization options for premium templates
 - License management
 
-### 12.7 Gamification System
+### 9.7 Gamification System
 **Status:** Optional enhancement, Phase 4
 
 **Features:**
@@ -762,7 +762,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - No paywalls or artificial limitations
 - Educational focus, not addictive mechanics
 
-### 12.8 Additional Planned Features
+### 9.8 Additional Planned Features
 
 **Accessibility Checker:**
 - WCAG compliance validation
