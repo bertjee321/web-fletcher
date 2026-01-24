@@ -4,52 +4,59 @@
 
 1. [Overview](#1-overview)
 2. [Core Problem & Solution](#2-core-problem--solution)
-3. [Brand Identity & Theme](#25-brand-identity--theme)
-4. [Product Goals](#3-product-goals)
-5. [Core Features](#4-core-features)
-   - [4.1 Design Style Configuration](#41-design-style-configuration--implemented)
-   - [4.2 Layout Generation Agent](#42-layout-generation-agent--implemented)
-   - [4.3 Component Generation Agent](#43-component-generation-agent--partially-implemented)
-   - [4.4 Session Management](#44-session-management--implemented)
-   - [4.5 Result Output](#45-result-output--implemented)
-6. [User Workflows](#5-user-workflows)
-7. [UI/UX Requirements](#6-uiux-requirements)
-   - [6.1 Page Structure](#61-page-structure--implemented)
-   - [6.2 Design System](#62-design-system-current-implementation-)
-   - [6.3 Accessibility](#63-accessibility--implemented)
-   - [6.4 Visual Personality](#64-visual-personality)
-8. [Technical Architecture](#7-technical-architecture)
-   - [7.1 Tech Stack](#71-tech-stack--implemented)
-   - [7.2 Project Structure](#72-project-structure--implemented)
-   - [7.3 API Endpoints](#73-api-endpoints)
-9. [Agent Specifications](#8-agent-specifications)
-   - [8.1 Layout Fletcher Agent](#81-layout-fletcher-agent--implemented)
-   - [8.2 Component Fletcher Agent](#82-component-fletcher-agent--prompt-exists-not-integrated)
-   - [8.3 Agent Collaboration](#83-agent-collaboration-future-enhancement)
-10. [Data Models](#9-data-models)
-    - [9.1 StyleContext](#91-stylecontext--implemented)
-    - [9.2 Session Model](#92-session-model--implemented-localstorage)
-11. [Current State & Gaps](#10-current-state--gaps)
-    - [10.1 Implemented Features](#101-implemented-features-)
-    - [10.2 Critical Gaps](#102-critical-gaps-)
-    - [10.3 Known Issues](#103-known-issues-)
-12. [Roadmap & Priorities](#11-roadmap--priorities)
-13. [Future Features (Detailed)](#12-future-features-detailed)
-    - [12.1 Visual Style Editor](#121-visual-style-editor)
-    - [12.2 Design Refinement Loop](#122-design-refinement-loop)
-    - [12.3 Database Persistence](#123-database-persistence)
-    - [12.4 Agent Collaboration](#124-agent-collaboration)
-    - [12.5 Export Options](#125-export-options)
-    - [12.6 Design Marketplace](#126-design-marketplace)
-    - [12.7 Gamification System](#127-gamification-system)
-    - [12.8 Additional Planned Features](#128-additional-planned-features)
-14. [Success Criteria](#13-success-criteria)
-15. [Design Principles](#14-design-principles)
-16. [Technical Debt & Maintenance](#15-technical-debt--maintenance)
-17. [User Stories](#16-user-stories)
-18. [Open Questions & Decisions](#17-open-questions--decisions)
-19. [Glossary](#18-glossary)
-20. [Migration Notes](#19-migration-notes)
+3. [Brand Identity & Theme](#3-brand-identity--theme)
+4. [Product Goals](#4-product-goals)
+5. [Core Features](#5-core-features)
+   - [5.1 Design Style Configuration](#51-design-style-configuration--implemented)
+   - [5.2 Layout Generation Agent](#52-layout-generation-agent--implemented)
+   - [5.3 User Authentication](#53-user-authentication--mvp-requirement)
+   - [5.4 Database & Persistence](#54-database--persistence--mvp-requirement)
+   - [5.5 Credits & Monetization System](#55-credits--monetization-system--mvp-requirement)
+   - [5.6 Usage Analytics](#56-usage-analytics--mvp-requirement)
+   - [5.7 Use-Case Landing Pages](#57-use-case-landing-pages--mvp-requirement)
+   - [5.8 Component Generation Agent](#58-component-generation-agent--phase-2-feature)
+   - [5.9 Session Management](#59-session-management--implemented)
+   - [5.10 Result Output](#510-result-output--implemented)
+6. [User Workflows](#6-user-workflows)
+7. [UI/UX Requirements](#7-uiux-requirements)
+   - [7.1 Page Structure](#71-page-structure--implemented)
+   - [7.2 Design System](#72-design-system-current-implementation-)
+   - [7.3 Accessibility](#73-accessibility--implemented)
+   - [7.4 Visual Personality](#74-visual-personality)
+8. [Technical Architecture](#8-technical-architecture)
+   - [8.1 Tech Stack](#81-tech-stack--implemented)
+   - [8.2 Project Structure](#82-project-structure--implemented)
+   - [8.3 API Endpoints](#83-api-endpoints)
+9. [Agent Specifications](#9-agent-specifications)
+   - [9.1 Layout Fletcher Agent](#91-layout-fletcher-agent--implemented)
+   - [9.2 Component Fletcher Agent](#92-component-fletcher-agent--phase-2)
+   - [9.3 Agent Collaboration](#93-agent-collaboration-future-enhancement)
+10. [Data Models](#10-data-models)
+    - [10.1 StyleContext](#101-stylecontext--implemented)
+    - [10.2 User & Authentication Models](#102-user--authentication-models--mvp-requirement)
+    - [10.3 Session Model](#103-session-model--implemented-localstorage)
+11. [Current State & Gaps](#11-current-state--gaps)
+    - [11.1 Implemented Features](#111-implemented-features-)
+    - [11.2 Critical MVP Gaps](#112-critical-mvp-gaps-)
+    - [11.3 Phase 2 Features (Deferred)](#113-phase-2-features-deferred-)
+    - [11.4 Known Issues](#114-known-issues-)
+12. [Roadmap & Priorities](#12-roadmap--priorities)
+13. [Future Features (Detailed)](#13-future-features-detailed)
+    - [13.1 Visual Style Editor](#131-visual-style-editor)
+    - [13.2 Design Refinement Loop](#132-design-refinement-loop)
+    - [13.3 Database Persistence](#133-database-persistence)
+    - [13.4 Agent Collaboration](#134-agent-collaboration)
+    - [13.5 Export Options](#135-export-options)
+    - [13.6 Design Marketplace](#136-design-marketplace)
+    - [13.7 Gamification System](#137-gamification-system)
+    - [13.8 Additional Planned Features](#138-additional-planned-features)
+14. [Success Criteria](#14-success-criteria)
+15. [Design Principles](#15-design-principles)
+16. [Technical Debt & Maintenance](#16-technical-debt--maintenance)
+17. [User Stories](#17-user-stories)
+18. [Open Questions & Decisions](#18-open-questions--decisions)
+19. [Glossary](#19-glossary)
+20. [Migration Notes](#20-migration-notes)
 
 ---
 
@@ -63,7 +70,7 @@
 
 **Target User:** Web developers and designers who want to rapidly prototype consistent UI designs with AI assistance.
 
-**Current Status:** MVP Phase - Core layout generation implemented, component generation pending
+**Current Status:** Pre-MVP Phase - Core layout generation implemented, authentication and monetization pending
 
 ---
 
@@ -82,7 +89,7 @@ Web Fletcher provides an AI-powered design system where:
 
 ---
 
-## 2.5 Brand Identity & Theme
+## 3. Brand Identity & Theme
 
 ### OSRS-Inspired Branding
 Web Fletcher draws inspiration from Old School RuneScape's fletching skill, where players craft precise, consistent arrows and bows.
@@ -126,20 +133,34 @@ These elements should enhance engagement without distracting from the profession
 
 ---
 
-## 3. Product Goals
+## 4. Product Goals
 
 ### MVP Goals (Current Focus)
 1. ✅ Generate consistent UI layouts based on user-defined style preferences
-2. 🚧 Generate matching UI components in the same design system
-3. ✅ Store and recall design context within a session
-4. ✅ Provide both visual previews and copyable code
+2. 🚧 User authentication (email / magic link)
+3. 🚧 Database persistence with user accounts
+4. 🚧 Wallet/credits system for pay-as-you-go model
+5. 🚧 Usage tracking and token logging
+6. 🚧 Three use-case-specific landing pages for SEO
+7. ✅ Provide both visual previews and copyable code
+8. ✅ Store and recall design context within a session
 
-### Phase 2 Goals
-1. Persist design sessions to database
+### MVP Success Criteria
+- [x] Layout generation working end-to-end
+- [ ] User authentication functional (email/magic link)
+- [ ] Database with users, wallet, and usage tables
+- [ ] Credit-based payment system via Stripe
+- [ ] Three landing pages deployed (indie devs, backend devs, agencies)
+- [ ] Basic analytics dashboard (tokens, costs, model usage)
+- [ ] 10+ paying users to validate business model
+
+### Phase 2 Goals (Post-MVP)
+1. Generate matching UI components in the same design system
 2. Enable session sharing and collaboration
 3. Implement design refinement workflow
 4. Add component generation agent
 5. Visual style editor with live preview
+6. Advanced analytics and user insights
 
 ### Success Metrics
 - User can generate a layout in < 2 minutes ✅
@@ -151,9 +172,9 @@ These elements should enhance engagement without distracting from the profession
 
 ---
 
-## 4. Core Features
+## 5. Core Features
 
-### 4.1 Design Style Configuration ✅ IMPLEMENTED
+### 5.1 Design Style Configuration ✅ IMPLEMENTED
 Users configure their design via a form with the following inputs:
 
 **Location:** `components/design/DesignConfigForm.tsx`
@@ -176,7 +197,7 @@ Users configure their design via a form with the following inputs:
 - Tooltip explanations for each option
 - Responsive layout for mobile/tablet/desktop
 
-### 4.2 Layout Generation Agent ✅ IMPLEMENTED
+### 5.2 Layout Generation Agent ✅ IMPLEMENTED
 **Agent Name:** Layout Fletcher
 
 **File Location:** `server/agents/layout-fletcher.v1.md` (currently active)
@@ -208,37 +229,228 @@ Users configure their design via a form with the following inputs:
 - Better component structure
 - More modern styling patterns
 
-### 4.3 Component Generation Agent 🚧 PARTIALLY IMPLEMENTED
+### 5.3 User Authentication 🚧 MVP REQUIREMENT
+**Status:** Not yet implemented - Critical for MVP
+
+**Authentication Method:** Email magic link (passwordless)
+
+**Features:**
+- Email-based signup and login
+- Magic link verification
+- Session management with JWT
+- User profile management
+- Logout functionality
+
+**Technology Stack:**
+- NextAuth.js or custom implementation
+- Email service (Resend, SendGrid, or AWS SES)
+- Secure token generation
+- Database integration for user sessions
+
+**User Flow:**
+1. User enters email address
+2. System sends magic link to email
+3. User clicks link to verify
+4. System creates session and redirects to dashboard
+5. Session persists across browser sessions
+
+### 5.4 Database & Persistence 🚧 MVP REQUIREMENT
+**Status:** Not yet implemented - Critical for MVP
+
+**Required Tables:**
+
+**Users:**
+```prisma
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  wallet        Wallet?
+  sessions      Session[]
+  usageLogs     UsageLog[]
+}
+```
+
+**Wallet:**
+```prisma
+model Wallet {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id])
+  credits       Int      @default(0)
+  transactions  Transaction[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+```
+
+**Usage Logs:**
+```prisma
+model UsageLog {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  sessionId     String?
+  modelUsed     String
+  tokensUsed    Int
+  creditsUsed   Int
+  costUsd       Float
+  createdAt     DateTime @default(now())
+}
+```
+
+**Transactions:**
+```prisma
+model Transaction {
+  id            String   @id @default(cuid())
+  walletId      String
+  wallet        Wallet   @relation(fields: [walletId], references: [id])
+  amount        Float    // in EUR
+  credits       Int
+  type          String   // "purchase" | "refund" | "adjustment"
+  stripeId      String?
+  createdAt     DateTime @default(now())
+}
+```
+
+### 5.5 Credits & Monetization System 🚧 MVP REQUIREMENT
+**Status:** Not yet implemented - Critical for MVP
+
+**Credit System:**
+- Internal credits (not 1:1 with OpenAI tokens)
+- Credits consumed per successful AI generation
+- No cost during API failures or downtime
+
+**Pricing Tiers:**
+- €5 = 500 credits (entry point)
+- €10 = 1,100 credits (10% bonus)
+- €25 = 3,000 credits (20% bonus)
+
+**Model Costs:**
+- Basic layout: 10 credits per generation
+- Advanced layout: 50 credits per generation
+- (Component generation in Phase 2)
+
+**Free Tier:**
+- New users: 50 free credits
+- 1-2 generations with best model
+- Encourages sign-up and testing
+
+**Payment Integration:**
+- Stripe for payment processing
+- Webhook handling for payment confirmation
+- Automatic credit top-up on successful payment
+- Transaction logging for audit trail
+
+### 5.6 Usage Analytics 🚧 MVP REQUIREMENT
+**Status:** Not yet implemented - Critical for MVP
+
+**Track Per Week:**
+- Total revenue (€)
+- Total OpenAI costs (€)
+- Number of paying users
+- Average revenue per user (ARPU)
+- Credits sold vs. credits used
+- Conversion rate (free → paid)
+
+**Track Per User:**
+- Credits purchased
+- Credits used
+- Tokens consumed
+- Cost per generation
+- Profit/loss per user
+
+**Admin Dashboard Requirements:**
+- Real-time credit usage monitoring
+- Cost vs. revenue tracking
+- User activity heatmap
+- Model usage distribution
+- Abuse detection alerts
+
+### 5.7 Use-Case Landing Pages 🚧 MVP REQUIREMENT
+**Status:** Not yet implemented - Critical for MVP
+
+Web Fletcher targets three specific use cases, each with its own landing page and positioning:
+
+**Landing Page 1: Indie Developers / Side Projects**
+- **URL:** `/for/indie-developers`
+- **Headline:** "Turn Ideas Into UI in Minutes, Not Hours"
+- **Target Audience:** Developers building side projects, MVPs, and personal apps
+- **Key Messages:**
+  - Speed over perfection
+  - Removes design as a bottleneck
+  - Experiment with multiple ideas quickly
+  - Affordable pay-as-you-go pricing
+- **Example Use Cases:**
+  - SaaS landing page for MVP
+  - Dashboard for side project
+  - Blog layout for personal brand
+- **CTA:** "Start Building Your Idea"
+
+**Landing Page 2: Backend / Full-Stack Developers (Internal Tools)**
+- **URL:** `/for/internal-tools`
+- **Headline:** "Build Functional UIs for Internal Tools Without Design Headaches"
+- **Target Audience:** Developers building admin panels, dashboards, and CRUD apps
+- **Key Messages:**
+  - Good enough UI, not pixel-perfect
+  - Focus on business logic, not CSS
+  - Admin panels and dashboards in minutes
+  - Consistent design without design system overhead
+- **Example Use Cases:**
+  - Admin dashboard
+  - Data entry forms
+  - Analytics panel
+  - User management interface
+- **CTA:** "Generate Your Dashboard"
+
+**Landing Page 3: Agencies / Freelancers (Prototyping & Pitches)**
+- **URL:** `/for/agencies`
+- **Headline:** "Win Clients Faster With Rapid Prototypes"
+- **Target Audience:** Agencies and freelancers pitching to clients
+- **Key Messages:**
+  - Time savings = more pitches = more wins
+  - Professional-looking prototypes instantly
+  - Iterate faster based on client feedback
+  - Impress clients with speed
+- **Example Use Cases:**
+  - Client pitch mockups
+  - Proposal layouts
+  - Quick design explorations
+  - MVP prototypes
+- **CTA:** "Create Your Prototype"
+
+**Common Elements Across All Landing Pages:**
+- Same product (Web Fletcher)
+- Same features and capabilities
+- Same pricing model
+- Different hero images/examples per use case
+- Testimonials from relevant user personas
+- Link to main product page
+
+**SEO Strategy:**
+- Each page targets specific keywords:
+  - Indie: "fast UI generation", "MVP design tool", "side project UI"
+  - Internal Tools: "admin panel generator", "CRUD UI builder", "internal dashboard design"
+  - Agencies: "rapid prototyping tool", "client mockup generator", "pitch design tool"
+- Separate meta descriptions and titles per page
+- Use case-specific structured data
+
+### 5.8 Component Generation Agent 📋 PHASE 2 FEATURE
 **Agent Name:** Component Fletcher
 
 **File Location:** `server/agents/component-fletcher.v1.md`
 
-**Status:** Prompt exists, but no API endpoint or UI integration
+**Status:** Prompt exists, but deferred to Phase 2 - Not required for MVP launch
 
-**Missing Implementation:**
-- API endpoint `/api/generate-component`
-- UI form for component description input
-- Integration with session storage
-- Preview and code display for components
+**Rationale for Deferring:**
+- MVP needs monetization infrastructure first
+- Component generation is a premium feature that can drive Phase 2 upgrades
+- Layout generation alone provides sufficient value for initial users
+- Authentication and payment system are higher priority
 
-**Input:** StyleContext object + component description
-
-**Output:** Reusable React component with Tailwind CSS
-
-**Responsibility:**
-- Craft small UI elements (buttons, cards, forms, modals, etc.)
-- Ensure hover/focus states match the design tone
-- Maintain consistency with layout style
-- Provide brief design explanations
-
-**Planned Features:**
-- Component type selector (button, card, form, modal, etc.)
-- Free-form description field
-- Component props configuration
-- Accessibility compliance validation
-- Reusable component library building
-
-### 4.4 Session Management ✅ IMPLEMENTED
+### 5.9 Session Management ✅ IMPLEMENTED
 **Hook:** `useSessions` (custom React hook)
 
 **Storage:** Client-side localStorage via `SessionsStorageUtil`
@@ -266,7 +478,7 @@ Users configure their design via a form with the following inputs:
 - Cloud sync across devices
 - Collaborative sessions
 
-### 4.5 Result Output ✅ IMPLEMENTED
+### 5.10 Result Output ✅ IMPLEMENTED
 **Components:**
 - `GeneratedOutput.tsx` - Code display with syntax highlighting
 - `LayoutPreview.tsx` - Live iframe preview
@@ -286,418 +498,60 @@ Users configure their design via a form with the following inputs:
 
 ---
 
-## 5. User Workflows
+## 6. User Workflows
 
-### Workflow 1: Generate a Layout ✅ IMPLEMENTED
+### Workflow 1: New User Onboarding 🚧 MVP WORKFLOW
+1. User lands on use-case-specific page (e.g., `/for/indie-developers`)
+2. User clicks "Start Building" CTA
+3. System prompts for email address
+4. System sends magic link to email
+5. User clicks link, account created automatically
+6. User receives 50 free credits
+7. User redirected to style configuration form
+8. User generates first layout using free credits
+9. System shows credit balance and top-up prompt
+
+### Workflow 2: Generate a Layout ✅ IMPLEMENTED (needs auth integration)
 1. User navigates to home page or clicks "New Session"
-2. User fills out StyleContext form (color scheme, tone, font, etc.)
-3. User optionally adds a design brief (e.g., "Landing page for a SaaS app")
-4. User clicks "Generate Layout" or "Fletch Layout"
-5. System calls layout-fletcher agent with StyleContext
-6. Loading state displays during generation
-7. Generated layout appears in split view (code + preview)
-8. User can copy code, download file, or adjust settings
-9. Session is automatically saved to localStorage
+2. **System checks authentication status**
+3. **System checks credit balance**
+4. User fills out StyleContext form (color scheme, tone, font, etc.)
+5. User optionally adds a design brief
+6. User clicks "Generate Layout" or "Fletch Layout"
+7. **System deducts credits before API call**
+8. System calls layout-fletcher agent with StyleContext
+9. **System logs tokens used and cost**
+10. Loading state displays during generation
+11. Generated layout appears in split view (code + preview)
+12. **System updates credit balance**
+13. User can copy code, download file, or adjust settings
+14. Session is automatically saved to database
 
-### Workflow 2: Generate a Component 🚧 NOT YET IMPLEMENTED
-1. User has an active StyleContext from Workflow 1
-2. User navigates to component generation section
-3. User selects component type or describes desired component
-4. User clicks "Generate Component" or "Fletch Component"
-5. System calls component-fletcher agent with StyleContext + description
-6. Component appears in preview with matching style
-7. User can copy code, add to component library
-8. Component is saved to session history
+### Workflow 3: Purchase Credits 🚧 MVP WORKFLOW
+1. User clicks "Add Credits" button
+2. System shows pricing tiers (€5, €10, €25)
+3. User selects tier and clicks "Purchase"
+4. Stripe checkout modal opens
+5. User completes payment
+6. Stripe webhook confirms payment
+7. System adds credits to user wallet
+8. User receives confirmation email
+9. Transaction logged in database
 
-### Workflow 3: Iterate on Design 🚧 PARTIALLY IMPLEMENTED
-1. User views generated layout
-2. User adjusts StyleContext settings (e.g., changes tone)
-3. User clicks "Regenerate" or "Fletch Again"
-4. New layout generated with updated context
-5. Side-by-side comparison available (future)
-6. User can revert to previous version (future)
-
-### Workflow 4: Manage Sessions ✅ IMPLEMENTED
+### Workflow 4: Manage Sessions ✅ IMPLEMENTED (needs database migration)
 1. User navigates to `/sessions`
 2. User views list of all saved sessions
 3. User clicks on session to view details
 4. User can view StyleContext and generated output
 5. User can create new session or continue existing one
 
----
-
-## 6. UI/UX Requirements
-
-### 6.1 Page Structure ✅ IMPLEMENTED
-- **Header:** Logo, tagline, navigation links
-- **Main Content:** Card-based layout with responsive design
-- **Forms:** Style configuration with clear labels and tooltips
-- **Output Display:** Split view (code + preview) or tabbed interface
-- **Footer:** Attribution, copyright, and links
-
-**Implemented Pages:**
-- `/` - Landing page with hero, features, and recent sessions
-- `/new-session` - Design configuration form
-- `/sessions` - List of all saved sessions
-- `/sessions/[sessionId]` - Session detail view
-- `/not-found` - Custom 404 page
-
-### 6.2 Design System (Current Implementation) ✅
-**Color Palette:**
-- Background: `#f8f5ef` (warm beige, parchment-like)
-- Text: `#2c2a24` (dark brown)
-- Accent: `#7a5f3e` (leather brown, OSRS-inspired)
-- Borders: `#d3c9b4`, `#e3d6c1`
-- Card: `#fffaf3` (cream)
-- Optional gold accents: `#d4af37` for highlights
-
-**Typography:**
-- Primary: Geist Sans (system UI, sans-serif fallback)
-- Monospace: JetBrains Mono (code blocks)
-- Serif accents for branding (titles and hero sections)
-
-**Spacing:**
-- Generous padding and margins
-- Comfortable breathing room
-- Consistent spacing scale (4px base unit)
-
-**Border Radius:**
-- Default: `8px` (rounded-lg in Tailwind)
-- Cards and buttons use consistent rounding
-
-**Component Library:**
-- `Card.tsx` - Consistent card design
-- `Button.tsx` - Styled buttons with hover states
-- `Tooltip.tsx` - Informational tooltips (Radix UI)
-- `Tabs.tsx` - Tab navigation (Radix UI)
-- `ModalContainer.tsx` - Modal dialogs
-- `LoadingSpinner.tsx` - Loading states
-- `NoticeBox.tsx` - Information/warning messages
-- `TextInput.tsx` - Form input fields
-
-### 6.3 Accessibility ✅ IMPLEMENTED
-- Proper heading hierarchy (h1 → h6)
-- ARIA attributes where necessary
-- Keyboard navigation support
-- Focus indicators on interactive elements
-- Color contrast compliance (WCAG AA minimum)
-- Semantic HTML throughout
-- Alt text for images
-- Screen reader friendly labels
-
-### 6.4 Visual Personality
-**Achieved:**
-- Warm, craftsman aesthetic (woodworking, artisanal feel)
-- Subtle OSRS nostalgia without being too game-like
-- Modern dev-tool energy balanced with cozy, approachable design
-- Professional enough for serious use, fun enough to be memorable
-- Card-based layout with generous spacing
-- Warm color palette with earth tones
-
-**Future Enhancements:**
-- More pronounced OSRS visual elements (optional theme toggle)
-- Animated transitions for generation process
-- Micro-interactions for user feedback
-- Gamification visual elements (badges, progress bars)
-
----
-
-## 7. Technical Architecture
-
-### 7.1 Tech Stack ✅ IMPLEMENTED
-| Layer              | Technology              | Status | Notes                                    |
-| ------------------ | ----------------------- | ------ | ---------------------------------------- |
-| Framework          | Next.js 16+             | ✅     | App Router, Server Components            |
-| Frontend Styling   | Tailwind CSS 4+         | ✅     | CSS Variables for theming                |
-| Component Library  | Radix UI                | ✅     | Accessible primitives (Tabs, Tooltip)    |
-| State Management   | React Hooks + Context   | ✅     | `useSessions` custom hook                |
-| LLM Integration    | OpenAI SDK              | ✅     | GPT-4 for agent execution                |
-| Agents             | Markdown-based prompts  | ✅     | File-based in `/server/agents`           |
-| Monospace Font     | JetBrains Mono          | ✅     | For code blocks                          |
-| Syntax Highlighting| react-syntax-highlighter| ✅     | VS Code Dark+ theme                      |
-| Storage (Current)  | localStorage            | ✅     | Client-side session persistence          |
-| Storage (Planned)  | SQLite / Prisma / Supabase | 🚧  | Database persistence Phase 2             |
-
-### 7.2 Project Structure ✅ IMPLEMENTED
-```
-web-fletcher/
-├── app/
-│   ├── api/
-│   │   └── generate-layout/
-│   │       └── route.ts              ✅ Layout generation endpoint
-│   ├── sessions/
-│   │   ├── [sessionId]/
-│   │   │   └── page.tsx              ✅ Session detail page
-│   │   └── page.tsx                  ✅ Sessions list page
-│   ├── new-session/
-│   │   └── page.tsx                  ✅ New session form
-│   ├── not-found.tsx                 ✅ Custom 404 page
-│   ├── layout.tsx                    ✅ Root layout
-│   ├── page.tsx                      ✅ Landing page
-│   └── globals.css                   ✅ Global styles
-├── server/
-│   └── agents/
-│       ├── layout-fletcher.v1.md     ✅ HTML/CSS layout agent (active)
-│       ├── layout-fletcher.v2.md     ✅ JSX/Tailwind layout agent (inactive)
-│       └── component-fletcher.v1.md  ✅ Component agent (no endpoint yet)
-├── components/
-│   ├── design/
-│   │   ├── style-inputs/
-│   │   │   ├── BorderRadiusSelector.tsx ✅
-│   │   │   ├── ColorSchemeSelector.tsx  ✅
-│   │   │   ├── FontSelector.tsx         ✅
-│   │   │   ├── PrimaryColorSelector.tsx ✅
-│   │   │   ├── SpacingSelector.tsx      ✅
-│   │   │   └── ToneSelector.tsx         ✅
-│   │   ├── output/
-│   │   │   ├── GeneratedOutput.tsx   ✅ Code display
-│   │   │   └── LayoutPreview.tsx     ✅ Live preview
-│   │   ├── DesignConfigForm.tsx      ✅ Main form
-│   │   └── DesignTabs.tsx            ✅ Tab navigation
-│   ├── layout/
-│   │   ├── Header.tsx                ✅ Site header
-│   │   ├── Footer.tsx                ✅ Site footer
-│   │   └── MainContent.tsx           ✅ Content wrapper
-│   ├── sessions/
-│   │   ├── SessionCard.tsx           ✅ Session list item
-│   │   └── SessionDetail.tsx         ✅ Session display
-│   └── ui/
-│       ├── Button.tsx                ✅ Styled button
-│       ├── Card.tsx                  ✅ Card component
-│       ├── Tooltip.tsx               ✅ Radix tooltip
-│       ├── Tabs.tsx                  ✅ Radix tabs
-│       ├── ModalContainer.tsx        ✅ Modal dialog
-│       ├── NoticeBox.tsx             ✅ Notice/warning box
-│       ├── LoadingSpinner.tsx        ✅ Loading state
-│       └── TextInput.tsx             ✅ Text input field
-├── lib/
-│   ├── enums/
-│   │   ├── border-radius.enum.ts     ✅
-│   │   ├── color-scheme.enum.ts      ✅
-│   │   ├── font.enum.ts              ✅
-│   │   ├── primary-color.enum.ts     ✅
-│   │   ├── spacing.enum.ts           ✅
-│   │   └── tone.enum.ts              ✅
-│   ├── models/
-│   │   └── style-context.model.ts    ✅ StyleContext interface
-│   ├── hooks/
-│   │   └── useSessions.ts            ✅ Session management hook
-│   └── utils/
-│       └── SessionsStorageUtil.ts    ✅ localStorage wrapper
-├── public/
-├── tsconfig.json                     ✅
-├── next.config.ts                    ✅
-├── tailwind.config.ts                ✅
-└── package.json                      ✅
-```
-
-### 7.3 API Endpoints
-
-**POST /api/generate-layout** ✅ IMPLEMENTED
-- **Request:** StyleContext object
-- **Response:** 
-  ```typescript
-  {
-    generatedCode: string;
-    explanation: string;
-    timestamp: string;
-  }
-  ```
-- **Error Handling:** 
-  - 400 for invalid/missing StyleContext
-  - 500 for OpenAI API failures
-  - Detailed error messages in response
-
-**POST /api/generate-component** 🚧 NOT IMPLEMENTED
-- **Request:** 
-  ```typescript
-  {
-    styleContext: StyleContext;
-    componentType: string;
-    description: string;
-  }
-  ```
-- **Response:** Similar to layout endpoint
-- **Status:** Agent prompt exists, endpoint pending
-
----
-
-## 8. Agent Specifications
-
-### 8.1 Layout Fletcher Agent ✅ IMPLEMENTED
-**Purpose:** Generate complete page layouts
-
-**Active Version:** `layout-fletcher.v1.md` (HTML/CSS approach)
-
-**Alternative Version:** `layout-fletcher.v2.md` (JSX/Tailwind - not yet used)
-
-**Input Format:**
-```json
-{
-  "colorScheme": "Light",
-  "primaryColor": "Blue",
-  "tone": "Modern Minimalist",
-  "font": "Inter",
-  "borderRadius": "Medium",
-  "spacing": "Normal",
-  "designBrief": "Landing page for a productivity app"
-}
-```
-
-**Output Format:**
-- Semantic HTML structure
-- CSS with CSS variables for theming
-- Mobile-first responsive design (media queries)
-- 2-3 bullet points explaining design rationale
-- Best practice annotations
-
-**Current Implementation Details:**
-- HTML5 semantic elements (header, nav, main, section, footer)
-- CSS custom properties for colors, fonts, spacing
-- Flexbox and Grid for layouts
-- Responsive breakpoints (mobile, tablet, desktop)
-- Accessibility attributes (ARIA labels, roles)
-
-**Constraints:**
-- StyleContext is authoritative; designBrief is secondary context
-- Use only provided style properties
-- Never override styleContext values with designBrief suggestions
-- Maintain consistency across all generated elements
-- Output valid, production-ready code
-
-**Planned Transition to v2:**
-- Switch to JSX/React components
-- Use Tailwind CSS instead of vanilla CSS
-- Component-based architecture
-- Props-driven styling
-
-### 8.2 Component Fletcher Agent 🚧 PROMPT EXISTS, NOT INTEGRATED
-**Purpose:** Generate reusable UI components
-
-**File Location:** `server/agents/component-fletcher.v1.md`
-
-**Input Format:**
-```json
-{
-  "componentType": "button",
-  "componentDescription": "Primary CTA button with loading state",
-  "styleContext": { ...StyleContext }
-}
-```
-
-**Output Format:**
-- React component (JSX/TSX)
-- Tailwind CSS classes
-- Props interface with TypeScript
-- Hover/focus/active state styles
-- Loading and disabled states
-- 1-2 line design explanation
-
-**Component Types to Support:**
-- Buttons (primary, secondary, ghost, danger)
-- Cards (content, product, profile)
-- Forms (text input, select, checkbox, radio)
-- Modals and dialogs
-- Navigation (navbar, sidebar, breadcrumbs)
-- Data display (tables, lists, grids)
-- Feedback (alerts, toasts, tooltips)
-
-**Constraints:**
-- Always match styleContext colors, spacing, radius
-- Ensure hover/focus states feel responsive
-- Prioritize accessibility (semantic HTML, ARIA, keyboard nav)
-- Include TypeScript prop types
-- Follow React best practices
-- Mobile-responsive by default
-
-**Integration Requirements (Pending):**
-- Create API endpoint at `/api/generate-component`
-- Add UI form for component type and description
-- Integrate with session storage
-- Display component in preview iframe
-- Save components to session history
-
-### 8.3 Agent Collaboration (Future Enhancement)
-**Vision:** Agents share context and work together
-
-**Planned Features:**
-- Layout agent provides structural context to component agent
-- Component agent receives both StyleContext and layoutContext
-- Components automatically align with parent layout constraints
-- Bidirectional feedback: layout can request matching components
-- Multi-agent conversation flow for complex designs
-
-**Technical Approach:**
-- Shared context object passed between agents
-- Agent-to-agent communication via structured JSON
-- Conversation history maintained in session
-- Conflict resolution when agents disagree
-
----
-
-## 9. Data Models
-
-### 9.1 StyleContext ✅ IMPLEMENTED
-```typescript
-interface StyleContext {
-  colorScheme: ColorScheme;
-  primaryColor: PrimaryColor;
-  borderRadius: BorderRadius;
-  tone: Tone;
-  font: Font;
-  spacing: Spacing;
-  designBrief?: string;
-}
-```
-
-**Enums Defined In:**
-- `lib/enums/color-scheme.enum.ts` ✅
-- `lib/enums/primary-color.enum.ts` ✅
-- `lib/enums/border-radius.enum.ts` ✅
-- `lib/enums/tone.enum.ts` ✅
-- `lib/enums/font.enum.ts` ✅
-- `lib/enums/spacing.enum.ts` ✅
-
-### 9.2 Session Model ✅ IMPLEMENTED (localStorage)
-```typescript
-interface Session {
-  id: string;
-  name: string;
-  styleContext: StyleContext;
-  generatedOutput?: {
-    code: string;
-    explanation: string;
-    timestamp: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
-```
-
-**Current Storage:** localStorage via `SessionsStorageUtil`
-
-**Future Database Schema (Prisma):**
-```prisma
-model Session {
-  id            String   @id @default(cuid())
-  userId        String?
-  name          String
-  styleContext  Json
-  outputs       Output[]
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
-
-model Output {
-  id          String   @id @default(cuid())
-  sessionId   String
-  session     Session  @relation(fields: [sessionId], references: [id])
-  type        String   // "layout" or "component"
-  code        String   @db.Text
-  explanation String   @db.Text
-  createdAt   DateTime @default(now())
-}
-```
+### Workflow 5: Monitor Usage (Admin) 🚧 MVP WORKFLOW
+1. Admin logs into dashboard
+2. Admin views real-time credit usage
+3. Admin checks cost vs. revenue metrics
+4. Admin identifies high-usage users
+5. Admin reviews abuse detection alerts
+6. Admin adjusts pricing or limits if needed
 
 ---
 
@@ -712,16 +566,23 @@ model Output {
 6. **Page Structure** - Landing, sessions, session detail, 404
 7. **Accessibility** - WCAG AA compliance
 
-### 10.2 Critical Gaps 🚧
-1. **Component Generation** - Prompt exists but no API/UI integration
+### 10.2 Critical MVP Gaps 🚧
+1. **User Authentication** - No email magic link system
 2. **Database Persistence** - Still using localStorage only
-3. **User Authentication** - No user accounts or login
-4. **Session Sharing** - Can't share designs with others
-5. **Design Refinement** - No iteration workflow
-6. **Agent Collaboration** - No context sharing between agents
-7. **Mobile Optimization** - Form layout needs improvement on small screens
+3. **Credit System** - No wallet or payment processing
+4. **Usage Tracking** - No token/cost logging
+5. **Analytics Dashboard** - No admin metrics view
+6. **Use-Case Landing Pages** - Only generic landing page exists
+7. **Stripe Integration** - No payment processing
 
-### 10.3 Known Issues 🐛
+### 10.3 Phase 2 Features (Deferred) 📋
+1. **Component Generation** - Prompt exists but no API/UI integration
+2. **Session Sharing** - Can't share designs with others
+3. **Design Refinement** - No iteration workflow
+4. **Agent Collaboration** - No context sharing between agents
+5. **Visual Style Editor** - No interactive design tweaking
+
+### 10.4 Known Issues 🐛
 1. **Limited Error Handling** - Basic error messages, could be more helpful
 2. **No Session Versioning** - Can't track history within a session
 3. **Single Layout Format** - Only HTML/CSS v1, not using Tailwind/JSX v2
@@ -734,32 +595,39 @@ model Output {
 
 ## 11. Roadmap & Priorities
 
-### Phase 1: Complete MVP (Current - Next 2-4 Weeks)
-**Goal:** Finish core feature set for initial launch
+### Phase 1: Complete MVP (Current - Next 4-6 Weeks)
+**Goal:** Launch with monetization, auth, and use-case landing pages
 
 | Priority | Feature                        | Effort | Status |
 | -------- | ------------------------------ | ------ | ------ |
-| 🔴 HIGH  | Component Fletcher API endpoint| Medium | 🚧     |
-| 🔴 HIGH  | Component generation UI        | Medium | 🚧     |
-| 🔴 HIGH  | Component session integration  | Low    | 🚧     |
-| 🟡 MED   | Design refinement workflow     | Medium | 🚧     |
-| 🟡 MED   | Mobile-responsive form layout  | Low    | 🚧     |
-| 🟢 LOW   | Switch to Layout v2 (Tailwind) | Medium | 📋     |
-| 🟢 LOW   | Enhanced error messages        | Low    | 📋     |
+| 🔴 HIGH  | User authentication (magic link)| High   | 🚧     |
+| 🔴 HIGH  | Database schema & migration     | High   | 🚧     |
+| 🔴 HIGH  | Credit wallet system            | High   | 🚧     |
+| 🔴 HIGH  | Stripe payment integration      | High   | 🚧     |
+| 🔴 HIGH  | Usage tracking & logging        | Medium | 🚧     |
+| 🔴 HIGH  | Landing page: Indie developers  | Medium | 🚧     |
+| 🔴 HIGH  | Landing page: Internal tools    | Medium | 🚧     |
+| 🔴 HIGH  | Landing page: Agencies          | Medium | 🚧     |
+| 🟡 MED   | Admin analytics dashboard       | Medium | 🚧     |
+| 🟡 MED   | Email notifications (magic link)| Low    | 🚧     |
+| 🟡 MED   | Migrate localStorage to DB      | Medium | 🚧     |
+| 🟢 LOW   | Enhanced error messages         | Low    | 📋     |
+| 🟢 LOW   | Mobile-responsive form layout   | Low    | 📋     |
 
-### Phase 2: Polish & Persistence (4-8 Weeks)
-**Goal:** Production-ready with database and auth
+### Phase 2: Feature Expansion (6-12 Weeks Post-MVP)
+**Goal:** Add component generation and design refinement
 
 | Priority | Feature                        | Effort | Benefits                    |
 | -------- | ------------------------------ | ------ | --------------------------- |
-| 🔴 HIGH  | Database migration (Prisma)    | High   | Cross-device persistence    |
-| 🔴 HIGH  | User authentication (NextAuth) | Medium | User accounts, privacy      |
+| 🔴 HIGH  | Component Fletcher API endpoint| Medium | New revenue stream          |
+| 🔴 HIGH  | Component generation UI        | Medium | Enhanced user value         |
+| 🟡 MED   | Design refinement workflow     | Medium | Improved iterations         |
 | 🟡 MED   | Session sharing via URLs       | Medium | Collaboration, showcase     |
 | 🟡 MED   | Session versioning & history   | Medium | Design iteration tracking   |
-| 🟡 MED   | Improved mobile layout         | Medium | Better UX on all devices    |
-| 🟢 LOW   | Analytics dashboard            | Low    | Usage insights              |
+| 🟡 MED   | Subscription pricing tier      | Low    | Predictable revenue         |
+| 🟢 LOW   | Switch to Layout v2 (Tailwind) | Medium | Modern output format        |
 
-### Phase 3: Differentiation (8-16 Weeks)
+### Phase 3: Differentiation (12-24 Weeks)
 **Goal:** Unique features that set Web Fletcher apart
 
 | Priority | Feature                        | Effort | Benefits                    |
@@ -772,7 +640,7 @@ model Output {
 | 🟢 LOW   | Accessibility checker          | Medium | WCAG compliance validation  |
 | 🟢 LOW   | Design critique AI             | Low    | Educational feedback        |
 
-### Phase 4: Scale & Community (16+ Weeks)
+### Phase 4: Scale & Community (24+ Weeks)
 **Goal:** Build ecosystem and community features
 
 | Priority | Feature                        | Effort | Benefits                    |
@@ -944,7 +812,7 @@ model Output {
 
 ## 13. Success Criteria
 
-### MVP Launch Criteria ✅
+### MVP Launch Criteria 🚧
 - [x] StyleContext form fully functional
 - [x] Layout generation working end-to-end
 - [x] Generated code is valid HTML/CSS
@@ -952,22 +820,27 @@ model Output {
 - [x] Preview rendering without errors
 - [x] Mobile-first responsive designs
 - [x] User can copy code to clipboard
-- [x] Session management working
-- [x] Sessions list and detail pages
-- [ ] Component generation functional
-- [ ] Design refinement basic workflow
+- [ ] Email magic link authentication
+- [ ] Database with users, wallet, usage tables
+- [ ] Stripe payment integration
+- [ ] Credit system functional
+- [ ] Usage tracking and logging
+- [ ] Admin analytics dashboard
+- [ ] Three use-case landing pages deployed
+- [ ] 10+ paying users acquired
+- [ ] Positive unit economics (revenue > costs)
 
-### Post-Launch Success Metrics (Phase 2)
-- [ ] Session persistence in database
-- [ ] User authentication working
-- [ ] Session sharing functional
+### Post-MVP Success Metrics (Phase 2)
 - [ ] Component generation agent live
+- [ ] 50+ paying users
+- [ ] Average revenue per user (ARPU) > €15/month
+- [ ] < 5% support requests due to billing
+- [ ] 10%+ week-over-week growth
+- [ ] Session sharing functional
 - [ ] Design refinement workflow tested
-- [ ] 500+ active users in beta
 - [ ] NPS score >= 40
 - [ ] 70%+ of generated code used in production
 - [ ] < 10% error rate in generation
-- [ ] Average session length > 10 minutes
 
 ### Long-term Success Metrics (Phase 3+)
 - [ ] 10,000+ registered users
@@ -1020,26 +893,32 @@ model Output {
 
 | Role       | Task                                                  | Benefit                   | Status |
 | ---------- | ----------------------------------------------------- | ------------------------- | ------ |
+| 👤 User    | Sign up with my email address (magic link).          | Quick, passwordless access| 🚧     |
+| 👤 User    | Receive 50 free credits to test the product.         | Risk-free trial           | 🚧     |
+| 👤 User    | Purchase credits via Stripe (€5/€10/€25).            | Pay-as-you-go flexibility | 🚧     |
+| 👤 User    | See my credit balance before generating.             | Cost awareness            | 🚧     |
+| 👤 User    | Know how many credits a generation will cost.        | Budget control            | 🚧     |
 | 👩‍🎨 User | Set my design style so AI keeps consistency.          | Consistent look & feel    | ✅     |
 | 👩‍🎨 User | Generate a layout based on my style.                  | Fast prototyping          | ✅     |
-| 👩‍🎨 User | Generate additional components in same style.         | Consistent design         | 🚧     |
-| 👩‍🎨 User | See previous results during the session.              | Iterative workflow        | ✅     |
-| 👩‍🎨 User | Copy generated code to use in my project.             | Quick implementation      | ✅     |
 | 👩‍🎨 User | View design explanations from AI agents.              | Learn design principles   | ✅     |
+| 👩‍🎨 User | Copy generated code to use in my project.             | Quick implementation      | ✅     |
 | 👩‍🎨 User | Download generated code as a file.                    | Easy file management      | ✅     |
 | 👩‍🎨 User | Preview design in a live view.                        | Visual validation         | ✅     |
-| 👩‍🎨 User | View all my saved sessions.                           | Session management        | ✅     |
-| 👩‍🎨 User | Load a previous session to continue work.             | Workflow continuity       | ✅     |
+| 👩‍🎨 User | View all my saved sessions (now in database).         | Session management        | 🚧     |
+| 👤 User    | Access my sessions from any device.                   | Cross-device workflow     | 🚧     |
+| 🧑‍💼 Admin| Monitor credit usage and costs in real-time.          | Financial oversight       | 🚧     |
+| 🧑‍💼 Admin| View tokens used per user and per model.              | Cost optimization         | 🚧     |
+| 🧑‍💼 Admin| Identify abuse or unusual usage patterns.             | Fraud prevention          | 🚧     |
 
-### Phase 2 (Database & Auth)
+### Phase 2 (Component Generation & Sharing)
 
 | Role       | Task                                                  | Benefit                   | Status |
 | ---------- | ----------------------------------------------------- | ------------------------- | ------ |
-| 👩‍🎨 User | Save my design style for later sessions.              | Persistent creativity     | 📋     |
-| 👩‍🎨 User | Access my sessions from any device.                   | Cross-device workflow     | 📋     |
-| 👩‍🎨 User | Share my session with teammates.                      | Collaboration             | 📋     |
+| 👩‍🎨 User | Generate additional components in same style.         | Consistent design         | 📋     |
+| 👩‍🎨 User | Share my session with teammates via URL.              | Collaboration             | 📋     |
 | 👩‍🎨 User | View version history of my designs.                   | Track design evolution    | 📋     |
 | 👩‍🎨 User | Revert to a previous version.                         | Undo mistakes             | 📋     |
+| 👩‍🎨 User | Get AI suggestions to improve my design.              | Learning and refinement   | 📋     |
 
 ### Phase 3 (Advanced Features)
 
@@ -1065,28 +944,40 @@ model Output {
 ## 17. Open Questions & Decisions
 
 **Priority for Next Sprint:**
-- Should component generation support all UI types or start narrow (buttons, cards only)?
-- Should we switch to Layout v2 (Tailwind/JSX) before adding components?
-- How should users provide feedback to refine generated designs? (thumbs up/down, text feedback, regenerate button?)
-- Should sessions auto-save or require explicit save action? (currently auto-saves)
-- What's the database choice: SQLite (simple), PostgreSQL (scalable), or Supabase (hosted)?
+- Which authentication provider: NextAuth (self-hosted) vs. Magic.link (hosted)?
+- Database choice: PostgreSQL (Supabase) vs. PlanetScale vs. Neon?
+- Email service: Resend vs. SendGrid vs. AWS SES?
+- Should free credits expire after 30 days to prevent abuse?
+- What's the minimum viable admin dashboard? (prioritize metrics)
+- Should landing pages be in Next.js or separate static sites?
+
+**MVP Scope Decisions:**
+- ✅ Component generation deferred to Phase 2
+- ✅ Three landing pages required for MVP
+- ✅ Authentication via email magic link (no social login initially)
+- ✅ Credits system with Stripe pay-as-you-go
+- ✅ Admin dashboard with basic analytics
+- ❓ Should we allow guest users with session-only storage?
+- ❓ Minimum credits per purchase to reduce transaction fees?
 
 **Business Model:**
-- Free tier vs. paid tier boundary - what features require payment?
-- Freemium model: Free = 10 layouts/month, Paid = unlimited?
-- Premium templates in marketplace - revenue share model?
+- Free tier: 50 credits (enough for 5 basic or 1 advanced layout)
+- Should free credits refill monthly or be one-time only?
+- Target ARPU: €10-15/month per active user
+- Markup on OpenAI costs: 3x minimum (adjust based on data)
 
 **Technical Decisions:**
-- Authentication provider: NextAuth (self-hosted) vs. Clerk (hosted)?
-- Which export format to prioritize: Next.js, React, HTML, or user choice?
-- Should gamification be opt-in, opt-out, or always-on?
-- Support custom Tailwind themes or stick to predefined options?
+- ✅ Start with passwordless authentication (email magic link)
+- ✅ Stripe for payments (industry standard, great docs)
+- ✅ PostgreSQL via Supabase (scalable, auth built-in)
+- ❓ Use Supabase Auth or custom JWT implementation?
+- ❓ Prisma ORM or raw SQL queries?
 
-**User Experience:**
-- Should there be a "Getting Started" tutorial or onboarding flow?
-- Multi-language support - start with English only or plan for i18n?
-- Dark mode for the app itself (not just generated designs)?
-- Should we show example outputs before users create a session?
+**Launch Strategy:**
+- Beta launch to friends & family first (10-20 people)
+- Collect feedback before public launch
+- Soft launch to indie dev communities (Reddit, Twitter, Indie Hackers)
+- Goal: 50 sign-ups in first week, 10 paying users in first month
 
 ---
 
@@ -1123,9 +1014,22 @@ The `project-notes.md` file can now be safely archived or deleted, as this PRD s
 
 ---
 
-**Document Version:** 2.0
+**From monetization.md:**
+This PRD now incorporates the MVP definition from `monetization.md`:
+- User authentication (email/magic link) is now a core MVP requirement
+- Database persistence with users, wallet, and usage tables is prioritized
+- Credit-based payment system is part of MVP scope
+- Basic analytics dashboard is required before launch
+- Three use-case landing pages are essential for SEO and positioning
+- Component generation has been deferred to Phase 2
+
+The previous "MVP = Layout + Components" has been replaced with "MVP = Layout + Auth + Monetization + Landing Pages" to align with business viability requirements.
+
+---
+
+**Document Version:** 3.0
 **Last Updated:** January, 2026
-**Status:** Living Document - Updated to reflect current implementation
+**Status:** Living Document - Updated to align MVP with monetization requirements
 **Maintained By:** Project Lead
 
-**Next Review:** After MVP completion (Component Fletcher implementation)
+**Next Review:** After MVP completion (Authentication + Credits + Landing Pages implemented)
