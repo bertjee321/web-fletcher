@@ -18,45 +18,28 @@
    - [5.9 Session Management](#59-session-management--implemented)
    - [5.10 Result Output](#510-result-output--implemented)
 6. [User Workflows](#6-user-workflows)
-7. [UI/UX Requirements](#7-uiux-requirements)
-   - [7.1 Page Structure](#71-page-structure--implemented)
-   - [7.2 Design System](#72-design-system-current-implementation-)
-   - [7.3 Accessibility](#73-accessibility--implemented)
-   - [7.4 Visual Personality](#74-visual-personality)
-8. [Technical Architecture](#8-technical-architecture)
-   - [8.1 Tech Stack](#81-tech-stack--implemented)
-   - [8.2 Project Structure](#82-project-structure--implemented)
-   - [8.3 API Endpoints](#83-api-endpoints)
-9. [Agent Specifications](#9-agent-specifications)
-   - [9.1 Layout Fletcher Agent](#91-layout-fletcher-agent--implemented)
-   - [9.2 Component Fletcher Agent](#92-component-fletcher-agent--phase-2)
-   - [9.3 Agent Collaboration](#93-agent-collaboration-future-enhancement)
-10. [Data Models](#10-data-models)
-    - [10.1 StyleContext](#101-stylecontext--implemented)
-    - [10.2 User & Authentication Models](#102-user--authentication-models--mvp-requirement)
-    - [10.3 Session Model](#103-session-model--implemented-localstorage)
-11. [Current State & Gaps](#11-current-state--gaps)
-    - [11.1 Implemented Features](#111-implemented-features-)
-    - [11.2 Critical MVP Gaps](#112-critical-mvp-gaps-)
-    - [11.3 Phase 2 Features (Deferred)](#113-phase-2-features-deferred-)
-    - [11.4 Known Issues](#114-known-issues-)
-12. [Roadmap & Priorities](#12-roadmap--priorities)
-13. [Future Features (Detailed)](#13-future-features-detailed)
-    - [13.1 Visual Style Editor](#131-visual-style-editor)
-    - [13.2 Design Refinement Loop](#132-design-refinement-loop)
-    - [13.3 Database Persistence](#133-database-persistence)
-    - [13.4 Agent Collaboration](#134-agent-collaboration)
-    - [13.5 Export Options](#135-export-options)
-    - [13.6 Design Marketplace](#136-design-marketplace)
-    - [13.7 Gamification System](#137-gamification-system)
-    - [13.8 Additional Planned Features](#138-additional-planned-features)
-14. [Success Criteria](#14-success-criteria)
-15. [Design Principles](#15-design-principles)
-16. [Technical Debt & Maintenance](#16-technical-debt--maintenance)
-17. [User Stories](#17-user-stories)
-18. [Open Questions & Decisions](#18-open-questions--decisions)
-19. [Glossary](#19-glossary)
-20. [Migration Notes](#20-migration-notes)
+7. [Current State & Gaps](#7-current-state--gaps)
+   - [7.1 Implemented Features](#71-implemented-features-)
+   - [7.2 Critical MVP Gaps](#72-critical-mvp-gaps-)
+   - [7.3 Phase 2 Features (Deferred)](#73-phase-2-features-deferred-)
+   - [7.4 Known Issues](#74-known-issues-)
+8. [Roadmap & Priorities](#8-roadmap--priorities)
+9. [Future Features (Detailed)](#9-future-features-detailed)
+   - [9.1 Visual Style Editor](#91-visual-style-editor)
+   - [9.2 Design Refinement Loop](#92-design-refinement-loop)
+   - [9.3 Database Persistence](#93-database-persistence)
+   - [9.4 Agent Collaboration](#94-agent-collaboration)
+   - [9.5 Export Options](#95-export-options)
+   - [9.6 Design Marketplace](#96-design-marketplace)
+   - [9.7 Gamification System](#97-gamification-system)
+   - [9.8 Additional Planned Features](#98-additional-planned-features)
+10. [Success Criteria](#10-success-criteria)
+11. [Design Principles](#11-design-principles)
+12. [Technical Debt & Maintenance](#12-technical-debt--maintenance)
+13. [User Stories](#13-user-stories)
+14. [Open Questions & Decisions](#14-open-questions--decisions)
+15. [Glossary](#15-glossary)
+16. [Migration Notes](#16-migration-notes)
 
 ---
 
@@ -575,14 +558,14 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 6. **Use-Case Landing Pages** - Only generic landing page exists
 7. **Stripe Integration** - No payment processing
 
-### 10.3 Phase 2 Features (Deferred) 📋
+### 7.3 Phase 2 Features (Deferred) 📋
 1. **Component Generation** - Prompt exists but no API/UI integration
 2. **Session Sharing** - Can't share designs with others
 3. **Design Refinement** - No iteration workflow
 4. **Agent Collaboration** - No context sharing between agents
 5. **Visual Style Editor** - No interactive design tweaking
 
-### 10.4 Known Issues 🐛
+### 7.4 Known Issues 🐛
 1. **Limited Error Handling** - Basic error messages, could be more helpful
 2. **No Session Versioning** - Can't track history within a session
 3. **Single Layout Format** - Only HTML/CSS v1, not using Tailwind/JSX v2
@@ -593,7 +576,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 11. Roadmap & Priorities
+## 8. Roadmap & Priorities
 
 ### Phase 1: Complete MVP (Current - Next 4-6 Weeks)
 **Goal:** Launch with monetization, auth, and use-case landing pages
@@ -655,9 +638,9 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 12. Future Features (Detailed)
+## 9. Future Features (Detailed)
 
-### 12.1 Visual Style Editor
+### 9.1 Visual Style Editor
 **Status:** Planned for Phase 3
 
 **Features:**
@@ -810,7 +793,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 13. Success Criteria
+## 10. Success Criteria
 
 ### MVP Launch Criteria 🚧
 - [x] StyleContext form fully functional
@@ -852,7 +835,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 14. Design Principles
+## 11. Design Principles
 
 1. **Consistency First:** All outputs respect the active style context without exception
 2. **Accessibility Default:** Every generated component meets WCAG AA standards
@@ -867,7 +850,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 15. Technical Debt & Maintenance
+## 12. Technical Debt & Maintenance
 
 ### Current Technical Debt
 1. **localStorage Limitations** - Will hit capacity limits with many sessions
@@ -887,7 +870,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 16. User Stories
+## 13. User Stories
 
 ### MVP Phase (Current)
 
@@ -941,7 +924,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 17. Open Questions & Decisions
+## 14. Open Questions & Decisions
 
 **Priority for Next Sprint:**
 - Which authentication provider: NextAuth (self-hosted) vs. Magic.link (hosted)?
@@ -981,7 +964,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 18. Glossary
+## 15. Glossary
 
 | Term | Definition |
 | ---- | ---------- |
@@ -999,7 +982,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ---
 
-## 19. Migration Notes
+## 16. Migration Notes
 
 **From project-notes.md:**
 This PRD now incorporates all content from `project-notes.md`, including:
