@@ -281,3 +281,82 @@
 - Refund all unused wallet balances
 - Provide export of user's generated designs
 - Archive database securely
+
+## 20. Pay-as-you-go flow
+# Minimal Architecture / Flow for Pay-As-You-Go AI Web App
+
+### 20.1 User Authentication (NextAuth + Magic Link)
+
+```
+User submits email
+       ↓
+NextAuth creates VerificationToken
+       ↓
+Email magic link sent → User clicks
+       ↓
+User row created (if new) + Session row created
+       ↓
+Client stores session in secure cookie
+```
+
+### 20.2 Frontend Session Management
+
+```
+Client-side React
+  ├─ useSession() hook → knows if logged in
+  └─ Conditional rendering: LoggedIn / NotLoggedIn
+```
+
+### 20.3 Design Session Creation
+
+```
+User creates new design session (UI form)
+       ↓
+Frontend sends POST to /api/design-sessions
+       ↓
+Server-side API
+  ├─ getServerSession() → verify logged-in user
+  └─ prisma.designSession.create({ userId: session.user.id, content })
+       ↓
+Design session stored in DB linked to user
+```
+
+### 20.4 OpenAI API Usage & Pay-As-You-Go
+
+```
+Frontend requests AI action
+       ↓
+Server-side API endpoint
+  ├─ getServerSession() → verify logged-in user
+  ├─ Check user balance / credits
+  │     └─ If insufficient → return error / redirect to payment
+  ├─ Deduct credits from user balance
+  ├─ Call OpenAI API with secure server-side key
+  └─ Store result in DB (optional) → return to frontend
+```
+
+### 20.5 Payments (Stripe example)
+
+```
+User wants more credits → clicks Buy Credits
+       ↓
+Frontend redirects to Stripe Checkout
+       ↓
+Stripe returns success / webhook to backend
+       ↓
+Server updates user balance in DB
+```
+
+### 20.6 Optional Enhancements
+
+* Rate limiting per user to avoid abuse
+* Optional OAuth login providers
+* Admin dashboard for usage / payments
+* Logging / error tracking
+
+### Notes
+
+* All sensitive operations happen server-side
+* Session management uses secure cookies, not localStorage
+* LocalStorage can be used temporarily for unsaved design sessions, then synced to DB once logged in
+* Magic links are sufficient for low-risk MVP; MFA can be added later
