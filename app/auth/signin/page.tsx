@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { TextInput } from "@/components/ui/TextInput";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function SignInPage() {
@@ -54,8 +55,9 @@ export default function SignInPage() {
             </form>
 
             <div className="mt-6 text-center text-sm text-[#6e6556]">
-              <p>We'll send you a secure link to sign in.</p>
+              <p>We&apos;ll send you a secure link to sign in.</p>
               <p className="mt-2 italic">No password required.</p>
+              <p className="mt-2">If it doesn&apos;t arrive, please check your spam or junk folder.</p>
             </div>
           </CardBody>
         </Card>
@@ -63,12 +65,12 @@ export default function SignInPage() {
         <div className="mt-6 text-center text-xs text-[#6e6556]">
           <p>
             New to Web Fletcher?{" "}
-            <a
+            <Link
               href="/"
               className="text-[#7a5f3e] hover:text-[#8b7355] underline"
             >
               Learn more
-            </a>
+            </Link>
           </p>
         </div>
       </section>
