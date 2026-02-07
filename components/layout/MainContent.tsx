@@ -1,9 +1,11 @@
-const MainContent = ({ children }: { children?: React.ReactNode }) => {
+export default function MainContent({
+  children,
+}: {
+  children?: React.ReactNode;
+}) {
   return (
-    <section className="flex-1 flex flex-col items-center px-8 py-10">
+    <main className="flex-1 flex flex-col items-center px-8 py-10">
       {children}
-    </section>
+    </main>
   );
-};
-
-export default MainContent;
+}
