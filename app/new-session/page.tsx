@@ -1,7 +1,6 @@
 "use client";
 
 import DesignConfigForm from "@/components/design/DesignConfigForm";
-import { PageLayoutWrapper } from "@/components/layout/PageLayoutWrapper";
 import { SessionNameModalContent } from "@/components/sessions/SessionNameModalContent";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
@@ -17,6 +16,7 @@ import {
 import { useGenerateLayout } from "@/lib/hooks/useGenerateLayout";
 import { useSessions } from "@/lib/hooks/useSessions";
 import { StyleContext } from "@/lib/models/style-context.model";
+import { useModal } from "@/lib/providers/ModalProvider";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -32,7 +32,7 @@ const DEFAULT_STYLE_CONTEXT: StyleContext = {
 
 export default function NewSessionPage() {
   const router = useRouter();
-  const [sessionNameModal, setSessionNameModal] = useState(false);
+  const { modal, openModal, closeModal } = useModal();
   const [sessionName, setSessionName] = useState("");
   const [styleContext, setStyleContext] = useState<StyleContext>(
     DEFAULT_STYLE_CONTEXT,
@@ -44,11 +44,19 @@ export default function NewSessionPage() {
 
   const onSubmit = () => {
     resetError();
-    setSessionNameModal(true);
+    openModal({
+      title: "New Session",
+      byline: "Give your design session a name",
+      content: SessionNameModalContent({
+        sessionName,
+        setSessionName,
+        onSessionNameSubmit,
+      }),
+    });
   };
 
   const onSessionNameSubmit = async () => {
-    setSessionNameModal(false);
+    closeModal();
 
     const newSession = createSession(sessionName, styleContext);
     const response = await generateLayout(styleContext);
@@ -63,46 +71,32 @@ export default function NewSessionPage() {
 
   return (
     <>
-      <PageLayoutWrapper
-        modal={{
-          isOpen: sessionNameModal,
-          onClose: () => setSessionNameModal(false),
-          title: "New Session",
-          byline: "Give your design session a name",
-          content: SessionNameModalContent({
-            sessionName,
-            setSessionName,
-            onSessionNameSubmit,
-          }),
-        }}
-      >
-        <Card className="max-w-3xl w-full p-6">
-          <CardHeader
-            title="🪶 Start a Design Session"
-            byline="Define your design tone and begin fletching your first layout."
-          />
+      <Card className="max-w-3xl w-full p-6">
+        <CardHeader
+          title="🪶 Start a Design Session"
+          byline="Define your design tone and begin fletching your first layout."
+        />
 
-          <CardBody>
-            {isError && (
-              <NoticeBox
-                type="error"
-                className="mt-6"
-                text="Failed to generate layout. Please try again."
-              ></NoticeBox>
-            )}
+        <CardBody>
+          {isError && (
+            <NoticeBox
+              type="error"
+              className="mt-6"
+              text="Failed to generate layout. Please try again."
+            ></NoticeBox>
+          )}
 
-            {isLoading ? (
-              <LoadingSpinner text="Generating layout..." />
-            ) : (
-              <DesignConfigForm
-                styleContext={styleContext}
-                setStyleContext={setStyleContext}
-                onSubmit={onSubmit}
-              ></DesignConfigForm>
-            )}
-          </CardBody>
-        </Card>
-      </PageLayoutWrapper>
+          {isLoading ? (
+            <LoadingSpinner text="Generating layout..." />
+          ) : (
+            <DesignConfigForm
+              styleContext={styleContext}
+              setStyleContext={setStyleContext}
+              onSubmit={onSubmit}
+            ></DesignConfigForm>
+          )}
+        </CardBody>
+      </Card>
     </>
   );
 }

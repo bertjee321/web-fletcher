@@ -1,6 +1,5 @@
 "use client";
 
-import { PageLayoutWrapper } from "@/components/layout/PageLayoutWrapper";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { useSessions } from "@/lib/hooks/useSessions";
@@ -12,7 +11,7 @@ export default function LandingPage() {
   const recentSessions = sessions.slice(0, 3);
 
   return (
-    <PageLayoutWrapper>
+    <>
       {/* Hero Section */}
       <section className="max-w-4xl w-full text-center py-16 space-y-6">
         <h1 className="text-5xl font-serif tracking-wide text-[#3f3a2f]">
@@ -154,6 +153,6 @@ export default function LandingPage() {
           </div>
         </section>
       )}
-    </PageLayoutWrapper>
+    </>
   );
 }

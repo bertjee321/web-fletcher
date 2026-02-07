@@ -1,3 +1,5 @@
+import { PageLayoutWrapper } from "@/components/layout/PageLayoutWrapper";
+import { ModalProvider } from "@/lib/providers/ModalProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ModalProvider>
+          <PageLayoutWrapper>{children}</PageLayoutWrapper>
+        </ModalProvider>
       </body>
     </html>
   );

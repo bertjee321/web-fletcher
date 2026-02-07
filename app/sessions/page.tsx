@@ -1,6 +1,5 @@
 "use client";
 
-import { PageLayoutWrapper } from "@/components/layout/PageLayoutWrapper";
 import { EmptySessionState } from "@/components/sessions/EmptySessionState";
 import { SessionCard } from "@/components/sessions/SessionCard";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
@@ -22,29 +21,27 @@ export default function SessionsPage() {
   };
 
   return (
-    <PageLayoutWrapper>
-      <Card className="max-w-4xl w-full p-6">
-        <CardHeader
-          title="📂 Your Design Sessions"
-          byline="Manage and revisit your previous design fletching sessions."
-        />
-        <CardBody>
-          {sortedSessions.length === 0 ? (
-            <EmptySessionState />
-          ) : (
-            <div className="mt-4 space-y-4">
-              {sortedSessions.map((session, index) => (
-                <SessionCard
-                  key={index}
-                  session={session}
-                  onClick={handleSessionClick}
-                  formatDate={formatDate}
-                />
-              ))}
-            </div>
-          )}
-        </CardBody>
-      </Card>
-    </PageLayoutWrapper>
+    <Card className="max-w-4xl w-full p-6">
+      <CardHeader
+        title="📂 Your Design Sessions"
+        byline="Manage and revisit your previous design fletching sessions."
+      />
+      <CardBody>
+        {sortedSessions.length === 0 ? (
+          <EmptySessionState />
+        ) : (
+          <div className="mt-4 space-y-4">
+            {sortedSessions.map((session, index) => (
+              <SessionCard
+                key={index}
+                session={session}
+                onClick={handleSessionClick}
+                formatDate={formatDate}
+              />
+            ))}
+          </div>
+        )}
+      </CardBody>
+    </Card>
   );
 }
