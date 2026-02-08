@@ -1,7 +1,7 @@
 "use client";
 
-import DesignConfigForm from "@/components/design/DesignConfigForm";
-import { SessionNameModalContent } from "@/components/sessions/SessionNameModalContent";
+import DesignConfigForm from "@/app/sessions/_components/DesignConfigForm";
+import { SessionNameModalContent } from "@/app/sessions/_components/SessionNameModalContent";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { NoticeBox } from "@/components/ui/NoticeBox";

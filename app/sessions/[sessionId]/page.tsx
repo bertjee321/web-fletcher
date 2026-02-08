@@ -1,7 +1,7 @@
 "use client";
 
-import GeneratedOutput from "@/components/output/GeneratedOutput";
-import LayoutPreview from "@/components/output/LayoutPreview";
+import GeneratedOutput from "@/app/sessions/_components/output/GeneratedOutput";
+import LayoutPreview from "@/app/sessions/_components/output/LayoutPreview";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Tabs } from "@/components/ui/Tabs";
 import { useSessions } from "@/lib/hooks/useSessions";

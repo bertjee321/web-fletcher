@@ -8,10 +8,9 @@ import {
   PrimaryColorInput,
   SpacingInput,
   ToneInput,
-} from "@/components/design/style-inputs";
+} from "@/app/sessions/_components/style-inputs";
 import { StyleContext } from "@/lib/models/style-context.model";
-import { Button } from "../ui/Button";
-import GeneratedOutput from "../output/GeneratedOutput";
+import { Button } from "../../../components/ui/Button";
 
 interface DesignConfigFormProps {
   styleContext: StyleContext;

@@ -1,7 +1,7 @@
 "use client";
 
-import { EmptySessionState } from "@/components/sessions/EmptySessionState";
-import { SessionCard } from "@/components/sessions/SessionCard";
+import { EmptySessionState } from "@/app/sessions/_components/EmptySessionState";
+import { SessionCard } from "@/app/sessions/_components/SessionCard";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { useSessions } from "@/lib/hooks/useSessions";
 import { formatDate } from "@/lib/utils/date-utils";

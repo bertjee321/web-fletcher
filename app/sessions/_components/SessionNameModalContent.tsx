@@ -1,5 +1,5 @@
-import { Button } from "../ui/Button";
-import { TextInput } from "../ui/TextInput";
+import { Button } from "../../../components/ui/Button";
+import { TextInput } from "../../../components/ui/TextInput";
 
 interface SessionNameModalContentProps {
   sessionName: string;

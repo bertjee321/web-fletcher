@@ -8,7 +8,7 @@ const Header = () => {
 
       <nav className="space-x-6 text-sm">
         <a
-          href="/new-session"
+          href="/sessions/new"
           className="hover:text-[#8b7355] transition-colors"
         >
           New

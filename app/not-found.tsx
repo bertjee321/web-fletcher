@@ -37,7 +37,7 @@ export default function NotFound() {
           </Button>
 
           <Button
-            onClick={() => (window.location.href = "/new-session")}
+            onClick={() => (window.location.href = "/sessions/new")}
             className="px-8 py-3 border border-[#d3c9b4] hover:bg-[#f8f5ef] text-[#3f3a2f] font-medium rounded-lg transition-colors"
           >
             🪶 Start Fletching

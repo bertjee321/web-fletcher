@@ -23,7 +23,7 @@ export default function LandingPage() {
         </p>
         <div className="flex gap-4 justify-center pt-4">
           <Button
-            onClick={() => router.push("/new-session")}
+            onClick={() => router.push("/sessions/new")}
             className="px-8 py-3 bg-[#7a5f3e] hover:bg-[#8b7355] text-white font-medium rounded-lg transition-colors"
           >
             🏹 Start Fletching
