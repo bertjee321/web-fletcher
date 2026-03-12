@@ -1,11 +1,11 @@
 import { prisma } from "@/lib/prisma/prisma";
 import { html, text } from "@/server/email/email.template";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import nodemailer from "nodemailer";
 
-const handler = NextAuth({
+export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
 
   providers: [
@@ -14,7 +14,6 @@ const handler = NextAuth({
       from: process.env.EMAIL_FROM,
       async sendVerificationRequest({ identifier, url, provider }) {
         const transport = nodemailer.createTransport(provider.server);
-
         await transport.sendMail({
           to: identifier,
           from: provider.from,
@@ -29,8 +28,9 @@ const handler = NextAuth({
   session: {
     strategy: "database",
   },
-
   debug: true,
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
