@@ -1,8 +1,10 @@
 import { PageLayoutWrapper } from "@/components/layout/PageLayoutWrapper";
-import { ModalProvider } from "@/lib/providers/ModalProvider";
 import type { Metadata } from "next";
+import { getServerSession } from "next-auth";
 import { Geist, Geist_Mono } from "next/font/google";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 import "./globals.css";
+import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,19 +21,21 @@ export const metadata: Metadata = {
   description: "Fletch your own web designs with AI precision.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ModalProvider>
+        <Providers session={session}>
           <PageLayoutWrapper>{children}</PageLayoutWrapper>
-        </ModalProvider>
+        </Providers>
       </body>
     </html>
   );
