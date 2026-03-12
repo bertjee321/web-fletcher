@@ -25,6 +25,16 @@ const LayoutPreview = ({ htmlContent }: LayoutPreviewProps) => {
 
   const cleanHtml = extractHtmlFromMarkdown(htmlContent);
 
+  const previewHtml = `
+    <style>
+      a, button, input[type="submit"], input[type="button"] { 
+        pointer-events: none !important; 
+        cursor: default !important; 
+      }
+    </style>
+    ${cleanHtml}
+  `;
+
   const handleCopy = () => {
     navigator.clipboard.writeText(cleanHtml);
     setCopied(true);
@@ -44,8 +54,9 @@ const LayoutPreview = ({ htmlContent }: LayoutPreviewProps) => {
     <div className="space-y-4">
       {/* Preview Frame */}
       <div className="border border-[#d3c6b1] rounded-lg overflow-hidden bg-white">
+        {/* <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 10 }}></div> */}
         <iframe
-          srcDoc={cleanHtml}
+          srcDoc={previewHtml}
           title="Generated Layout Preview"
           className="w-full h-[600px] border-0"
           sandbox="allow-same-origin"

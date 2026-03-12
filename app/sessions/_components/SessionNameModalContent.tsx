@@ -1,17 +1,18 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "../../../components/ui/Button";
 import { TextInput } from "../../../components/ui/TextInput";
 
 interface SessionNameModalContentProps {
-  sessionName: string;
-  setSessionName: (value: string) => void;
-  onSessionNameSubmit: () => void;
+  onSessionNameSubmit: (sessionName: string) => void;
 }
 
 export const SessionNameModalContent = ({
-  sessionName,
-  setSessionName,
   onSessionNameSubmit,
 }: SessionNameModalContentProps) => {
+  const [sessionName, setSessionName] = useState("");
+
   return (
     <>
       <TextInput
@@ -21,7 +22,7 @@ export const SessionNameModalContent = ({
       />
       <Button
         className="mt-4 w-full bg-[#7a5f3e] hover:bg-[#8b7355] text-white font-medium py-2 rounded-lg transition-colors"
-        onClick={onSessionNameSubmit}
+        onClick={() => onSessionNameSubmit(sessionName)}
       >
         Submit
       </Button>

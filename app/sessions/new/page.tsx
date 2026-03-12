@@ -32,8 +32,7 @@ const DEFAULT_STYLE_CONTEXT: StyleContext = {
 
 export default function NewSessionPage() {
   const router = useRouter();
-  const { modal, openModal, closeModal } = useModal();
-  const [sessionName, setSessionName] = useState("");
+  const { openModal, closeModal } = useModal();
   const [styleContext, setStyleContext] = useState<StyleContext>(
     DEFAULT_STYLE_CONTEXT,
   );
@@ -47,15 +46,13 @@ export default function NewSessionPage() {
     openModal({
       title: "New Session",
       byline: "Give your design session a name",
-      content: SessionNameModalContent({
-        sessionName,
-        setSessionName,
-        onSessionNameSubmit,
-      }),
+      content: (
+        <SessionNameModalContent onSessionNameSubmit={onSessionNameSubmit} />
+      ),
     });
   };
 
-  const onSessionNameSubmit = async () => {
+  const onSessionNameSubmit = async (sessionName: string) => {
     closeModal();
 
     const newSession = createSession(sessionName, styleContext);
