@@ -296,7 +296,6 @@ Web Fletcher targets three specific use cases, each with its own landing page an
   - Speed over perfection
   - Removes design as a bottleneck
   - Experiment with multiple ideas quickly
-  - Affordable pay-as-you-go pricing
 - **Example Use Cases:**
   - SaaS landing page for MVP
   - Dashboard for side project
@@ -509,7 +508,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 | Priority | Feature                        | Effort | Benefits                    |
 | -------- | ------------------------------ | ------ | --------------------------- |
-| 🔴 HIGH  | Component Fletcher API endpoint| Medium | New revenue stream          |
+| 🔴 HIGH  | Component Fletcher API endpoint| Medium | Enhanced user value         |
 | 🔴 HIGH  | Component generation UI        | Medium | Enhanced user value         |
 | 🟡 MED   | Design refinement workflow     | Medium | Improved iterations         |
 | 🟡 MED   | Session sharing via URLs       | Medium | Collaboration, showcase     |
