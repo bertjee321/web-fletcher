@@ -11,7 +11,6 @@
    - [5.2 Layout Generation Agent](#52-layout-generation-agent--implemented)
    - [5.3 User Authentication](#53-user-authentication--mvp-requirement)
    - [5.4 Database & Persistence](#54-database--persistence--mvp-requirement)
-   - [5.5 Credits & Monetization System](#55-credits--monetization-system--mvp-requirement)
    - [5.6 Usage Analytics](#56-usage-analytics--mvp-requirement)
    - [5.7 Use-Case Landing Pages](#57-use-case-landing-pages--mvp-requirement)
    - [5.8 Component Generation Agent](#58-component-generation-agent--phase-2-feature)
@@ -53,7 +52,7 @@
 
 **Target User:** Web developers and designers who want to rapidly prototype consistent UI designs with AI assistance.
 
-**Current Status:** Pre-MVP Phase - Core layout generation implemented, authentication and monetization pending
+**Current Status:** Pre-MVP Phase - Core layout generation implemented, authentication pending
 
 ---
 
@@ -122,20 +121,17 @@ These elements should enhance engagement without distracting from the profession
 1. ✅ Generate consistent UI layouts based on user-defined style preferences
 2. 🚧 User authentication (email / magic link)
 3. 🚧 Database persistence with user accounts
-4. 🚧 Wallet/credits system for pay-as-you-go model
-5. 🚧 Usage tracking and token logging
-6. 🚧 Three use-case-specific landing pages for SEO
-7. ✅ Provide both visual previews and copyable code
-8. ✅ Store and recall design context within a session
+4. 🚧 Usage tracking and token logging
+5. 🚧 Three use-case-specific landing pages for SEO
+6. ✅ Provide both visual previews and copyable code
+7. ✅ Store and recall design context within a session
 
 ### MVP Success Criteria
 - [x] Layout generation working end-to-end
 - [ ] User authentication functional (email/magic link)
-- [ ] Database with users, wallet, and usage tables
-- [ ] Credit-based payment system via Stripe
+- [ ] Database with users and usage tables
 - [ ] Three landing pages deployed (indie devs, backend devs, agencies)
-- [ ] Basic analytics dashboard (tokens, costs, model usage)
-- [ ] 10+ paying users to validate business model
+- [ ] Basic analytics dashboard (tokens, model usage)
 
 ### Phase 2 Goals (Post-MVP)
 1. Generate matching UI components in the same design system
@@ -250,22 +246,8 @@ model User {
   name          String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  wallet        Wallet?
   sessions      Session[]
   usageLogs     UsageLog[]
-}
-```
-
-**Wallet:**
-```prisma
-model Wallet {
-  id            String   @id @default(cuid())
-  userId        String   @unique
-  user          User     @relation(fields: [userId], references: [id])
-  credits       Int      @default(0)
-  transactions  Transaction[]
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
 }
 ```
 
@@ -278,76 +260,25 @@ model UsageLog {
   sessionId     String?
   modelUsed     String
   tokensUsed    Int
-  creditsUsed   Int
-  costUsd       Float
   createdAt     DateTime @default(now())
 }
 ```
-
-**Transactions:**
-```prisma
-model Transaction {
-  id            String   @id @default(cuid())
-  walletId      String
-  wallet        Wallet   @relation(fields: [walletId], references: [id])
-  amount        Float    // in EUR
-  credits       Int
-  type          String   // "purchase" | "refund" | "adjustment"
-  stripeId      String?
-  createdAt     DateTime @default(now())
-}
-```
-
-### 5.5 Credits & Monetization System 🚧 MVP REQUIREMENT
-**Status:** Not yet implemented - Critical for MVP
-
-**Credit System:**
-- Internal credits (not 1:1 with OpenAI tokens)
-- Credits consumed per successful AI generation
-- No cost during API failures or downtime
-
-**Pricing Tiers:**
-- €5 = 500 credits (entry point)
-- €10 = 1,100 credits (10% bonus)
-- €25 = 3,000 credits (20% bonus)
-
-**Model Costs:**
-- Basic layout: 10 credits per generation
-- Advanced layout: 50 credits per generation
-- (Component generation in Phase 2)
-
-**Free Tier:**
-- New users: 50 free credits
-- 1-2 generations with best model
-- Encourages sign-up and testing
-
-**Payment Integration:**
-- Stripe for payment processing
-- Webhook handling for payment confirmation
-- Automatic credit top-up on successful payment
-- Transaction logging for audit trail
 
 ### 5.6 Usage Analytics 🚧 MVP REQUIREMENT
 **Status:** Not yet implemented - Critical for MVP
 
 **Track Per Week:**
-- Total revenue (€)
-- Total OpenAI costs (€)
-- Number of paying users
-- Average revenue per user (ARPU)
-- Credits sold vs. credits used
-- Conversion rate (free → paid)
+- Number of active users
+- Total generations
+- Model usage distribution
+- Error rate
 
 **Track Per User:**
-- Credits purchased
-- Credits used
 - Tokens consumed
-- Cost per generation
-- Profit/loss per user
+- Generations per session
+- Model usage
 
 **Admin Dashboard Requirements:**
-- Real-time credit usage monitoring
-- Cost vs. revenue tracking
 - User activity heatmap
 - Model usage distribution
 - Abuse detection alerts
@@ -428,10 +359,8 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 **Status:** Prompt exists, but deferred to Phase 2 - Not required for MVP launch
 
 **Rationale for Deferring:**
-- MVP needs monetization infrastructure first
 - Component generation is a premium feature that can drive Phase 2 upgrades
 - Layout generation alone provides sufficient value for initial users
-- Authentication and payment system are higher priority
 
 ### 5.9 Session Management ✅ IMPLEMENTED
 **Hook:** `useSessions` (custom React hook)
@@ -489,37 +418,21 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 3. System prompts for email address
 4. System sends magic link to email
 5. User clicks link, account created automatically
-6. User receives 50 free credits
-7. User redirected to style configuration form
-8. User generates first layout using free credits
-9. System shows credit balance and top-up prompt
+6. User redirected to style configuration form
+7. User generates first layout
 
 ### Workflow 2: Generate a Layout ✅ IMPLEMENTED (needs auth integration)
 1. User navigates to home page or clicks "New Session"
 2. **System checks authentication status**
-3. **System checks credit balance**
-4. User fills out StyleContext form (color scheme, tone, font, etc.)
-5. User optionally adds a design brief
-6. User clicks "Generate Layout" or "Fletch Layout"
-7. **System deducts credits before API call**
-8. System calls layout-fletcher agent with StyleContext
-9. **System logs tokens used and cost**
-10. Loading state displays during generation
-11. Generated layout appears in split view (code + preview)
-12. **System updates credit balance**
-13. User can copy code, download file, or adjust settings
-14. Session is automatically saved to database
-
-### Workflow 3: Purchase Credits 🚧 MVP WORKFLOW
-1. User clicks "Add Credits" button
-2. System shows pricing tiers (€5, €10, €25)
-3. User selects tier and clicks "Purchase"
-4. Stripe checkout modal opens
-5. User completes payment
-6. Stripe webhook confirms payment
-7. System adds credits to user wallet
-8. User receives confirmation email
-9. Transaction logged in database
+3. User fills out StyleContext form (color scheme, tone, font, etc.)
+4. User optionally adds a design brief
+5. User clicks "Generate Layout" or "Fletch Layout"
+6. System calls layout-fletcher agent with StyleContext
+7. **System logs tokens used**
+8. Loading state displays during generation
+9. Generated layout appears in split view (code + preview)
+10. User can copy code, download file, or adjust settings
+11. Session is automatically saved to database
 
 ### Workflow 4: Manage Sessions ✅ IMPLEMENTED (needs database migration)
 1. User navigates to `/sessions`
@@ -530,11 +443,9 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 
 ### Workflow 5: Monitor Usage (Admin) 🚧 MVP WORKFLOW
 1. Admin logs into dashboard
-2. Admin views real-time credit usage
-3. Admin checks cost vs. revenue metrics
-4. Admin identifies high-usage users
-5. Admin reviews abuse detection alerts
-6. Admin adjusts pricing or limits if needed
+2. Admin views real-time usage metrics
+3. Admin identifies high-usage users
+4. Admin reviews abuse detection alerts
 
 ---
 
@@ -552,11 +463,9 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 ### 7.2 Critical MVP Gaps 🚧
 1. **User Authentication** - No email magic link system
 2. **Database Persistence** - Still using localStorage only
-3. **Credit System** - No wallet or payment processing
-4. **Usage Tracking** - No token/cost logging
-5. **Analytics Dashboard** - No admin metrics view
-6. **Use-Case Landing Pages** - Only generic landing page exists
-7. **Stripe Integration** - No payment processing
+3. **Usage Tracking** - No token logging
+4. **Analytics Dashboard** - No admin metrics view
+5. **Use-Case Landing Pages** - Only generic landing page exists
 
 ### 7.3 Phase 2 Features (Deferred) 📋
 1. **Component Generation** - Prompt exists but no API/UI integration
@@ -579,14 +488,12 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 ## 8. Roadmap & Priorities
 
 ### Phase 1: Complete MVP (Current - Next 4-6 Weeks)
-**Goal:** Launch with monetization, auth, and use-case landing pages
+**Goal:** Launch with auth, usage tracking, and use-case landing pages
 
 | Priority | Feature                        | Effort | Status |
 | -------- | ------------------------------ | ------ | ------ |
 | 🔴 HIGH  | User authentication (magic link)| High   | 🚧     |
 | 🔴 HIGH  | Database schema & migration     | High   | 🚧     |
-| 🔴 HIGH  | Credit wallet system            | High   | 🚧     |
-| 🔴 HIGH  | Stripe payment integration      | High   | 🚧     |
 | 🔴 HIGH  | Usage tracking & logging        | Medium | 🚧     |
 | 🔴 HIGH  | Landing page: Indie developers  | Medium | 🚧     |
 | 🔴 HIGH  | Landing page: Internal tools    | Medium | 🚧     |
@@ -607,8 +514,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 | 🟡 MED   | Design refinement workflow     | Medium | Improved iterations         |
 | 🟡 MED   | Session sharing via URLs       | Medium | Collaboration, showcase     |
 | 🟡 MED   | Session versioning & history   | Medium | Design iteration tracking   |
-| 🟡 MED   | Subscription pricing tier      | Low    | Predictable revenue         |
-| 🟢 LOW   | Switch to Layout v2 (Tailwind) | Medium | Modern output format        |
+|  LOW   | Switch to Layout v2 (Tailwind) | Medium | Modern output format        |
 
 ### Phase 3: Differentiation (12-24 Weeks)
 **Goal:** Unique features that set Web Fletcher apart
@@ -739,7 +645,6 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - Rating and review system
 - Tag-based search
 - Style context presets library
-- Monetization options for premium templates
 - License management
 
 ### 9.7 Gamification System
@@ -804,20 +709,13 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - [x] Mobile-first responsive designs
 - [x] User can copy code to clipboard
 - [ ] Email magic link authentication
-- [ ] Database with users, wallet, usage tables
-- [ ] Stripe payment integration
-- [ ] Credit system functional
+- [ ] Database with users and usage tables
 - [ ] Usage tracking and logging
 - [ ] Admin analytics dashboard
 - [ ] Three use-case landing pages deployed
-- [ ] 10+ paying users acquired
-- [ ] Positive unit economics (revenue > costs)
 
 ### Post-MVP Success Metrics (Phase 2)
 - [ ] Component generation agent live
-- [ ] 50+ paying users
-- [ ] Average revenue per user (ARPU) > €15/month
-- [ ] < 5% support requests due to billing
 - [ ] 10%+ week-over-week growth
 - [ ] Session sharing functional
 - [ ] Design refinement workflow tested
@@ -830,7 +728,6 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - [ ] 100,000+ designs generated
 - [ ] Design marketplace with 100+ templates
 - [ ] Community engagement (comments, shares)
-- [ ] Revenue from premium features (if applicable)
 - [ ] Integration partnerships (Figma, VSCode, etc.)
 
 ---
@@ -877,11 +774,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 | Role       | Task                                                  | Benefit                   | Status |
 | ---------- | ----------------------------------------------------- | ------------------------- | ------ |
 | 👤 User    | Sign up with my email address (magic link).          | Quick, passwordless access| 🚧     |
-| 👤 User    | Receive 50 free credits to test the product.         | Risk-free trial           | 🚧     |
-| 👤 User    | Purchase credits via Stripe (€5/€10/€25).            | Pay-as-you-go flexibility | 🚧     |
-| 👤 User    | See my credit balance before generating.             | Cost awareness            | 🚧     |
-| 👤 User    | Know how many credits a generation will cost.        | Budget control            | 🚧     |
-| 👩‍🎨 User | Set my design style so AI keeps consistency.          | Consistent look & feel    | ✅     |
+| ‍🎨 User | Set my design style so AI keeps consistency.          | Consistent look & feel    | ✅     |
 | 👩‍🎨 User | Generate a layout based on my style.                  | Fast prototyping          | ✅     |
 | 👩‍🎨 User | View design explanations from AI agents.              | Learn design principles   | ✅     |
 | 👩‍🎨 User | Copy generated code to use in my project.             | Quick implementation      | ✅     |
@@ -889,8 +782,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 | 👩‍🎨 User | Preview design in a live view.                        | Visual validation         | ✅     |
 | 👩‍🎨 User | View all my saved sessions (now in database).         | Session management        | 🚧     |
 | 👤 User    | Access my sessions from any device.                   | Cross-device workflow     | 🚧     |
-| 🧑‍💼 Admin| Monitor credit usage and costs in real-time.          | Financial oversight       | 🚧     |
-| 🧑‍💼 Admin| View tokens used per user and per model.              | Cost optimization         | 🚧     |
+| 🧑‍💼 Admin| View tokens used per user and per model.              | Usage monitoring          | 🚧     |
 | 🧑‍💼 Admin| Identify abuse or unusual usage patterns.             | Fraud prevention          | 🚧     |
 
 ### Phase 2 (Component Generation & Sharing)
@@ -930,7 +822,6 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - Which authentication provider: NextAuth (self-hosted) vs. Magic.link (hosted)?
 - Database choice: PostgreSQL (Supabase) vs. PlanetScale vs. Neon?
 - Email service: Resend vs. SendGrid vs. AWS SES?
-- Should free credits expire after 30 days to prevent abuse?
 - What's the minimum viable admin dashboard? (prioritize metrics)
 - Should landing pages be in Next.js or separate static sites?
 
@@ -938,20 +829,11 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - ✅ Component generation deferred to Phase 2
 - ✅ Three landing pages required for MVP
 - ✅ Authentication via email magic link (no social login initially)
-- ✅ Credits system with Stripe pay-as-you-go
 - ✅ Admin dashboard with basic analytics
 - ❓ Should we allow guest users with session-only storage?
-- ❓ Minimum credits per purchase to reduce transaction fees?
-
-**Business Model:**
-- Free tier: 50 credits (enough for 5 basic or 1 advanced layout)
-- Should free credits refill monthly or be one-time only?
-- Target ARPU: €10-15/month per active user
-- Markup on OpenAI costs: 3x minimum (adjust based on data)
 
 **Technical Decisions:**
 - ✅ Start with passwordless authentication (email magic link)
-- ✅ Stripe for payments (industry standard, great docs)
 - ✅ PostgreSQL via Supabase (scalable, auth built-in)
 - ❓ Use Supabase Auth or custom JWT implementation?
 - ❓ Prisma ORM or raw SQL queries?
@@ -960,7 +842,7 @@ Web Fletcher targets three specific use cases, each with its own landing page an
 - Beta launch to friends & family first (10-20 people)
 - Collect feedback before public launch
 - Soft launch to indie dev communities (Reddit, Twitter, Indie Hackers)
-- Goal: 50 sign-ups in first week, 10 paying users in first month
+- Goal: 50 sign-ups in first week
 
 ---
 
@@ -997,22 +879,9 @@ The `project-notes.md` file can now be safely archived or deleted, as this PRD s
 
 ---
 
-**From monetization.md:**
-This PRD now incorporates the MVP definition from `monetization.md`:
-- User authentication (email/magic link) is now a core MVP requirement
-- Database persistence with users, wallet, and usage tables is prioritized
-- Credit-based payment system is part of MVP scope
-- Basic analytics dashboard is required before launch
-- Three use-case landing pages are essential for SEO and positioning
-- Component generation has been deferred to Phase 2
-
-The previous "MVP = Layout + Components" has been replaced with "MVP = Layout + Auth + Monetization + Landing Pages" to align with business viability requirements.
-
----
-
 **Document Version:** 3.0
 **Last Updated:** January, 2026
-**Status:** Living Document - Updated to align MVP with monetization requirements
+**Status:** Living Document
 **Maintained By:** Project Lead
 
-**Next Review:** After MVP completion (Authentication + Credits + Landing Pages implemented)
+**Next Review:** After MVP completion (Authentication + Landing Pages implemented)
